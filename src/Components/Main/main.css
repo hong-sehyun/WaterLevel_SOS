@@ -1,10 +1,9 @@
-.kakao-overlay-article {
+/* .kakao-overlay-article {
     font-size: 12px;
     padding: 0;
 }
 
 .kakao-overlay-article div {
-    /* margin: 10px; */
     padding: 5px;
 }
 
@@ -24,11 +23,11 @@
 
 .header-section {
     display: flex;
-    align-items: center; /* Vertically centers items */
-    justify-content: space-between; /* Puts maximum space between the items */
+    align-items: center; 
+    justify-content: space-between; 
 }
 
 .close-button {
     margin-left: 8px;
     cursor: pointer;
-}
+} */
