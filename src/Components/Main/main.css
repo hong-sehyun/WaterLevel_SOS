@@ -1,0 +1,34 @@
+.kakao-overlay-article {
+    font-size: 12px;
+    padding: 0;
+}
+
+.kakao-overlay-article div {
+    /* margin: 10px; */
+    padding: 5px;
+}
+
+.kakao-overlay-article .header-section h1 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.kakao-overlay-article h2 {
+    margin: 0;
+    font-size: 12px;
+    color: hsl(205, 10%, 50%);
+}
+ 
+
+
+
+.header-section {
+    display: flex;
+    align-items: center; /* Vertically centers items */
+    justify-content: space-between; /* Puts maximum space between the items */
+}
+
+.close-button {
+    margin-left: 8px;
+    cursor: pointer;
+}
