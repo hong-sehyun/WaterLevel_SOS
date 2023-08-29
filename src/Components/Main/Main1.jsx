@@ -293,10 +293,10 @@ const Main1 = () => {
                 map: map,
                 path: path,
                 strokeWeight: 3,
-                strokeColor: '#39f',
-                strokeOpacity: 0.8,
-                fillColor: '#39f',
-                fillOpacity: 0.7
+                strokeColor: '#EF3636',
+                strokeOpacity: 0.7,
+                fillColor: '#EF3636',
+                fillOpacity: 0.3
 
               });
           })
