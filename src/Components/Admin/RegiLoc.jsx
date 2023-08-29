@@ -53,8 +53,7 @@ const RegiLoc = () => {
             <div>
                 {clickedCoordinates.map((coord, index) => (
                     <div key={index}>
-                        위도: {coord.lat}<br />
-                        경도: {coord.lng}<br /><br />
+                        new kakao.maps.LatLng({coord.lat},{coord.lng}),
                     </div>
                 ))}
             </div>
