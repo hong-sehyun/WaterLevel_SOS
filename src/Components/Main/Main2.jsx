@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
 const Main2 = () => {
+
+
   return (
-    <div>Main2</div>
-  )
+    <div>
+      수위예측
+    </div>
+  );
 }
 
-export default Main2
+export default Main2;
