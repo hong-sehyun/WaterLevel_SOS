@@ -1,0 +1,30 @@
+
+.nav {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navContainer {
+    display: flex;
+}
+
+.navDiv {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100px; 
+    width: 200px; 
+}
+
+@media (max-width: 768px) {
+    .navDiv {
+        width: 150px; 
+    }
+}
+
+.navName {
+    font-size: 18px;
+}
