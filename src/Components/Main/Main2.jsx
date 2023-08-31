@@ -1,12 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Main2 = () => {
 
 
   return (
-    <div>
-      수위예측
-    </div>
+    <>
+      <h1>
+        수위예측
+      </h1>
+      <Link to='/'>범람알림 받으러 가기</Link>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 /* global kakao */
 import React, { useEffect, useRef  } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Main1 = () => {
@@ -48,12 +49,16 @@ const Main1 = () => {
               });
           })
           .catch(error => {
-              console.error("Error fetching points:", error);
+              console.error(error);
           });
   }, []);
 
   return (
+    <>
       <div id="map" ref={mapRef} style={{ width: '100%', height: '500px' }}></div>
+      <Link to='/'>범람알림 받으러 가기</Link>
+    </>
+      
   );
 }
 
