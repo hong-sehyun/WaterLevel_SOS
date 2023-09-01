@@ -12,7 +12,7 @@ function Navbar() {
         </h2>
         <div className="navContainer">
           <div className='navDiv'>
-            <Link to="/main1">
+            <Link to="/ctrlarea">
               <div className='navIcon'><LuNavigationOff /></div>
               <div className='navName'>
                 통제(예정) 현황
@@ -20,7 +20,7 @@ function Navbar() {
             </Link>
           </div>
           <div className='navDiv'>
-            <Link to="/main2">
+            <Link to="/wlpred">
               <div className='navIcon'><MdOutlineWater /></div>
               <div className='navName'>
               수위 예측
@@ -28,7 +28,7 @@ function Navbar() {
             </Link>
           </div>
           <div className='navDiv'>
-            <Link to="/main3">
+            <Link to="/shelter">
               <div className='navIcon'><MdNightShelter /></div>
               <div className='navName'>
               대피소

@@ -5,9 +5,9 @@ import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import WebSocketComponent from './Components/Main/WebSocketComponent';
 import Main from './Components/Main/Main';
-import Main1 from './Components/Main/Main1';
-import Main2 from './Components/Main/Main2';  
-import Main3 from './Components/Main/Main3';  
+import CtrlArea from './Components/Main/CtrlArea';
+import WLpred from './Components/Main/WLpred';  
+import Shelter from './Components/Main/Shelter';  
 import Footer from './Components/Footer/Footer';
 import Login from './Components/Admin/Login';
 
@@ -31,9 +31,9 @@ function App() {
         <Navbar />
         <WebSocketComponent  />
         <Routes>
-          <Route path="/main1" element={<Main1 />} />
-          <Route path="/main2" element={<Main2 />} />
-          <Route path="/main3" element={<Main3 />} />
+          <Route path="/ctrlarea" element={<CtrlArea />} />
+          <Route path="/wlpred" element={<WLpred />} />
+          <Route path="/shelter" element={<Shelter />} />
           <Route path="/" element={<Main />} />  
           <Route path="/login" element={<Login />} />  
 

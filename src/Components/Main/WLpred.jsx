@@ -1,14 +1,17 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Main3 = () => {
+const WLpred = () => {
+
+
   return (
     <>
-      <h1>대피소</h1>
+      <h1>
+        수위예측
+      </h1>
       <Link to='/'>범람알림 받으러 가기</Link>
     </>
-
-  )
+  );
 }
 
-export default Main3
+export default WLpred;
