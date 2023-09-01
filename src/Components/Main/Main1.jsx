@@ -1,4 +1,4 @@
-/* global kakao */
+// /* global kakao */
 import React, { useEffect, useRef  } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -6,6 +6,7 @@ import axios from 'axios';
 const Main1 = () => {
   const mapRef = useRef(null);
   const LEVEL = 2; 
+  const {kakao} = window;
 
   useEffect(() => {
       const container = mapRef.current;
