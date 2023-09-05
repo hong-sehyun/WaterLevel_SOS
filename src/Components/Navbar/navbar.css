@@ -1,4 +1,6 @@
-
+:root {
+  --primary: #546e7a;
+}
 .nav {
     display: flex;
     justify-content: center;
@@ -28,3 +30,65 @@
 .navName {
     font-size: 18px;
 }
+
+.title {
+    font-size:30px;
+}
+
+@media (max-width: 768px) {
+    .category:not(.showCategory) li:not(#more-icon) {
+        display: none;
+    }
+    #more-icon {
+        display: inline-block;
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 769px) {
+    #more-icon {
+        display: none;
+    }
+    .category li {
+        display: inline-block;
+    }
+}
+
+nav {
+    margin: 20px;
+}
+
+.linkDiv:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+
+}
+
+
+.modalContainer {
+    width: 350px;
+    height: 500px;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.linkDiv, .modalContainer a {
+    flex: 1;                 /* Distribute space equally among children */
+    display: flex;           /* To center content vertically */
+    align-items: center;     /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+
+}
+
+#closeIcon {
+    font-size: 24px;
+}
+
+/* nav, 
+nav a, 
+nav li, 
+.dialog, 
+.dialog a, 
+.dialog div {
+    color: black;
+} */

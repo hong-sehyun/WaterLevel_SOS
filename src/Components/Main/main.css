@@ -1,33 +1,50 @@
-/* .kakao-overlay-article {
-    font-size: 12px;
-    padding: 0;
+.componentContainer {
+    position: relative;
+    background-image: linear-gradient(rgba(33, 38, 39, 0.7), rgba(0, 0, 0, 0.7)), url('../../Assets/fog-2947202_1280.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 20px;
 }
 
-.kakao-overlay-article div {
-    padding: 5px;
+.inputBox {
+
+    display: grid;
+    grid-template-columns: 5fr 3fr;
 }
 
-.kakao-overlay-article .header-section h1 {
-    margin: 0;
-    font-size: 16px;
+.inputDiv {
+    background-color: rgba(255, 255, 255, 0.45);
+
 }
 
-.kakao-overlay-article h2 {
-    margin: 0;
-    font-size: 12px;
-    color: hsl(205, 10%, 50%);
-}
- 
-
-
-
-.header-section {
-    display: flex;
-    align-items: center; 
-    justify-content: space-between; 
+.inputDiv::placeholder {
+    color: #ffffff;
 }
 
-.close-button {
-    margin-left: 8px;
-    cursor: pointer;
-} */
+#h2title {
+    color: rgb(255, 255, 255, 0.9);
+}
+
+#h3title {
+    color: rgb(255, 255, 255, 0.9);
+}
+
+#katalk {
+    color: rgb(255, 255, 255, 0.9);
+}
+
+@media (max-width: 768px) { /* Adjust 768px as needed */
+    .inputBox {
+        grid-template-columns: 1fr; /* Only one column, so children will stack */
+    }
+}
+
+.div1, .div2 {
+    margin: 20px;
+}
+
+
+#txt {
+    color: rgb(255, 255, 255, 0.7);
+}

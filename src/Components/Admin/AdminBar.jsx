@@ -14,22 +14,28 @@ const AdminBar = () => {
   return (
     <nav aria-label="breadcrumb">
       <ul>
-      <li>
       {cookies.jwtToken ? (
+      <li>
           <a onClick={handleLogout}>관리자 모드 로그아웃</a>
-      ) : (
-        <Link to='/login'>관리자 모드 로그인</Link>
-      )}
       </li>
-      </ul>
+      ) : (
+        <li>
+          <Link to='/login'>관리자 모드 로그인</Link>
+        </li>
+      )}
       {cookies.jwtToken && (
         <>
-          <Link to='/register'>등록하기</Link>
+          <li>
+          <Link to='/register'>등록하기</Link>          
+          </li>
+          <li>
           <Link to='/regiInfo'>등록된 정보</Link>
+          </li>
         </>
       )
-
-      }
+      
+    }
+    </ul>
     </nav>
   )
 }
