@@ -11,11 +11,11 @@ import Shelter from './Components/Main/Shelter';
 import Footer from './Components/Footer/Footer';
 import Login from './Components/Admin/Login';
 
-import Register from './Components/Admin/Register';
-import RegiLoc from './Components/Admin/RegiLoc';
-
-import RegiInfo from './Components/Admin/RegiInfo';
-import MemberList from './Components/Admin/MemberList';
+import Register from './Components/Admin/Register/Register';
+import RegiLoc from './Components/Admin/Register/RegiLoc';
+import RegiList from './Components/Admin/Register/RegiList';
+import MemberList from './Components/Admin/Register/MemberList';
+import ShelterList from './Components/Admin/Register/ShelterList';
 
 
 import AdminBar from './Components/Admin/AdminBar';
@@ -29,7 +29,7 @@ function App() {
       <>
         <AdminBar />
         <Navbar />
-        <WebSocketComponent  />
+        {/* <WebSocketComponent  /> */}
         <Routes>
           <Route path="/ctrlarea" element={<CtrlArea />} />
           <Route path="/wlpred" element={<WLpred />} />
@@ -40,8 +40,10 @@ function App() {
           <Route path="/register" element={<Register />} />  
           <Route path="/register/location" element={<RegiLoc />} /> 
 
-          <Route path="/regiInfo" element={<RegiInfo />} />  
-          <Route path="/regiInfo/memberList" element={<MemberList />} /> 
+          <Route path="/regilist" element={<RegiList />} />  
+          <Route path="/regilist/memberList" element={<MemberList />} /> 
+          <Route path="/regilist/shelterList" element={<ShelterList />} /> 
+
 
           <Route path="/join" element={<Join />} />  
           

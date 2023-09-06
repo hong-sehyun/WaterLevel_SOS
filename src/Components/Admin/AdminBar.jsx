@@ -29,7 +29,7 @@ const AdminBar = () => {
           <Link to='/register'>등록하기</Link>          
           </li>
           <li>
-          <Link to='/regiInfo'>등록된 정보</Link>
+          <Link to='/regilist'>등록된 정보</Link>
           </li>
         </>
       )
