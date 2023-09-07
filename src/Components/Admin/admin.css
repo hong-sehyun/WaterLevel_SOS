@@ -1,0 +1,20 @@
+.adminNav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px;
+    background-color: black;
+    padding: 15px;
+}
+
+.adminNav button {
+    border: 2px;
+    margin-bottom: 0;
+    padding: 5px 10px;
+    white-space: nowrap; 
+    border-radius: 18px;
+    margin: 5px;
+    width: 170px;
+    font-size: 15px;
+    
+}
