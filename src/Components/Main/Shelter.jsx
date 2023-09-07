@@ -1,10 +1,28 @@
-import React, { useEffect, useState  } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
 const Shelter = () => {
   const [shelters, setShelters] = useState([]);
+  // 대피소 목록 클릭시 지도상에 마커 표시
+  const [selectedShelter, setSelectedShelter] = useState(null);
+  // 대피소 목록 클릭시 지도상에 content 표시
+  const currentInfoWindow = useRef(null);
+
+
+  const onShelterClick = (shelter) => {
+    setSelectedShelter(shelter);
+    if (window.kakao && window.kakao.maps) {
+      const mapContainer = document.getElementById('map');
+      const centerPosition = new window.kakao.maps.LatLng(shelter.latitude, shelter.longtitude);
+      const map = new window.kakao.maps.Map(mapContainer, {
+        center: centerPosition,
+        level: 7
+      });
+
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,10 +40,13 @@ const Shelter = () => {
   }, []);
 
   useEffect(() => {
+
     if (window.kakao && window.kakao.maps) {
-      const container = document.getElementById('map'); 
+      const container = document.getElementById('map');
       const options = {
-        center: new window.kakao.maps.LatLng(35.2, 127.6), 
+        center: selectedShelter ?
+          new window.kakao.maps.LatLng(selectedShelter.latitude, selectedShelter.longtitude) :
+          new window.kakao.maps.LatLng(35.2, 127.6),
         level: 7
       };
 
@@ -34,27 +55,59 @@ const Shelter = () => {
       shelters.forEach(shelter => {
         const markerPosition = new window.kakao.maps.LatLng(shelter.latitude, shelter.longtitude);
         const marker = new window.kakao.maps.Marker({
-          position: markerPosition
+          position: markerPosition,
+          zIndex: 1
         });
+
+        marker.setOpacity(0.5);
+
+        // 마커 클릭 이벤트
+        window.kakao.maps.event.addListener(marker, 'click', function () {
+          setSelectedShelter(shelter);
+        });
+
+        //대피소 목록에서 대피소 선택시 opecity 변화, content 표시
+        if (selectedShelter && selectedShelter.idshelter === shelter.idshelter) {
+          marker.setOpacity(1);
+          marker.setZIndex(10);
+
+          const content = `<div style="
+          padding: 7px;
+          white-space: nowrap;
+        ">${shelter.name}</div>`;
+          const infoWindow = new window.kakao.maps.InfoWindow({
+            content: content,
+            zIndex: 10
+
+          });
+
+          if (currentInfoWindow.current) {
+            currentInfoWindow.current.close();
+          }
+
+          infoWindow.open(map, marker);
+          currentInfoWindow.current = infoWindow;
+        }
 
         marker.setMap(map);
       });
     }
-  }, [shelters]);
+  }, [shelters, selectedShelter]);
 
   return (
     <>
-    <div>
-      <div id="map" style={{ width: '100%', height: '400px' }}></div>
-      <ul>
-        {shelters.map(shelter => (
-          <li key={shelter.idshelter}>
-            {shelter.name} - {shelter.address}
-          </li>
-        ))}
-      </ul>
-    </div>
-    <Link to='/'>범람알림 받으러 가기</Link>
+      <div>
+        <div id="map" style={{ width: '100%', height: '400px' }}></div>
+        <ul>
+          {shelters.map(shelter => (
+            <li key={shelter.idshelter} onClick={() => onShelterClick(shelter)}
+              style={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? { color: "black" , fontWeight: "bolder"} : {}}>
+              {shelter.name} - {shelter.address}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <Link to='/'>범람알림 받으러 가기</Link>
     </>
   );
 }
