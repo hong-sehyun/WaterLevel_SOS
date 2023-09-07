@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './main.css'
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 const Main = () => {
     const [name, setName] = useState('');
     const [contact, setContact] = useState('');
+
+    useEffect(() => {
+        AOS.init({duration: 1500})
+      }, [])
 
     const handleName = (e) => {
         setName(e.target.value);
@@ -37,7 +44,7 @@ const Main = () => {
     return (
         <div className="componentContainer">
 
-            <div className="inputBox">
+            <div className="inputBox" data-aos="fade-up">
                 <div className="div1">
                     <h2 id='h2title'>집중 호우로 인한 사망·실종 연평균 40명!</h2>
                     <div id='txt'>
