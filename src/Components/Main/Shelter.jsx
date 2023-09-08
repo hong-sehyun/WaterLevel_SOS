@@ -9,19 +9,32 @@ const Shelter = () => {
   const [selectedShelter, setSelectedShelter] = useState(null);
   // 대피소 목록 클릭시 지도상에 content 표시
   const currentInfoWindow = useRef(null);
+  const defaultPosition = new window.kakao.maps.LatLng(35.2, 127.6);
+  const [mapCenter, setMapCenter] = useState(defaultPosition);
+
+  
+  const geocoder = new window.kakao.maps.services.Geocoder();
+
 
 
   const onShelterClick = (shelter) => {
     setSelectedShelter(shelter);
-    if (window.kakao && window.kakao.maps) {
-      const mapContainer = document.getElementById('map');
-      const centerPosition = new window.kakao.maps.LatLng(shelter.latitude, shelter.longtitude);
-      const map = new window.kakao.maps.Map(mapContainer, {
-        center: centerPosition,
-        level: 7
-      });
+    // if (window.kakao && window.kakao.maps) {
+    //   const mapContainer = document.getElementById('map');
+    //   const centerPosition = new window.kakao.maps.LatLng(shelter.latitude, shelter.longtitude);
+    //   const map = new window.kakao.maps.Map(mapContainer, {
+    //     center: centerPosition,
+    //     level: 7
+    //   });
 
-    }
+    // }
+    geocoder.addressSearch(shelter.address, function (result, status) {
+      if (status === window.kakao.maps.services.Status.OK) {
+        setMapCenter(new window.kakao.maps.LatLng(result[0].y, result[0].x));
+      }
+    });
+
+
   };
 
   useEffect(() => {
@@ -39,57 +52,57 @@ const Shelter = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
 
+  useEffect(() => {
     if (window.kakao && window.kakao.maps) {
       const container = document.getElementById('map');
       const options = {
-        center: selectedShelter ?
-          new window.kakao.maps.LatLng(selectedShelter.latitude, selectedShelter.longtitude) :
-          new window.kakao.maps.LatLng(35.2, 127.6),
+        center: mapCenter,
         level: 7
       };
-
       const map = new window.kakao.maps.Map(container, options);
 
+
       shelters.forEach(shelter => {
-        const markerPosition = new window.kakao.maps.LatLng(shelter.latitude, shelter.longtitude);
-        const marker = new window.kakao.maps.Marker({
-          position: markerPosition,
-          zIndex: 1
-        });
+        geocoder.addressSearch(shelter.address, function (result, status) {
+          if (status === window.kakao.maps.services.Status.OK) {
+            const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
+            const marker = new window.kakao.maps.Marker({
+              position: coords
+            });
+            marker.setOpacity(0.5);
 
-        marker.setOpacity(0.5);
+            // 마커 클릭 이벤트
+            window.kakao.maps.event.addListener(marker, 'click', function () {
+              setSelectedShelter(shelter);
+            });
 
-        // 마커 클릭 이벤트
-        window.kakao.maps.event.addListener(marker, 'click', function () {
-          setSelectedShelter(shelter);
-        });
+            //대피소 목록에서 대피소 선택시 opecity 변화, content 표시
+            if (selectedShelter && selectedShelter.idshelter === shelter.idshelter) {
+              marker.setOpacity(1);
+              marker.setZIndex(10);
 
-        //대피소 목록에서 대피소 선택시 opecity 변화, content 표시
-        if (selectedShelter && selectedShelter.idshelter === shelter.idshelter) {
-          marker.setOpacity(1);
-          marker.setZIndex(10);
-
-          const content = `<div style="
+              const content = `<div style="
           padding: 7px;
           white-space: nowrap;
         ">${shelter.name}</div>`;
-          const infoWindow = new window.kakao.maps.InfoWindow({
-            content: content,
-            zIndex: 10
+              const infoWindow = new window.kakao.maps.InfoWindow({
+                content: content,
+                zIndex: 10
 
-          });
+              });
 
-          if (currentInfoWindow.current) {
-            currentInfoWindow.current.close();
+              if (currentInfoWindow.current) {
+                currentInfoWindow.current.close();
+              }
+
+              infoWindow.open(map, marker);
+              currentInfoWindow.current = infoWindow;
+            }
+
+            marker.setMap(map);
           }
-
-          infoWindow.open(map, marker);
-          currentInfoWindow.current = infoWindow;
-        }
-
-        marker.setMap(map);
+        });
       });
     }
   }, [shelters, selectedShelter]);
@@ -101,7 +114,7 @@ const Shelter = () => {
         <ul>
           {shelters.map(shelter => (
             <li key={shelter.idshelter} onClick={() => onShelterClick(shelter)}
-              style={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? { color: "black" , fontWeight: "bolder"} : {}}>
+              style={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? { color: "black", fontWeight: "bolder" } : {}}>
               {shelter.name} - {shelter.address}
             </li>
           ))}
