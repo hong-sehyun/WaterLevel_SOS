@@ -18,7 +18,6 @@ import MemberList from './Components/Admin/Register/MemberList';
 import ShelterList from './Components/Admin/Register/ShelterList';
 
 
-import AdminBar from './Components/Admin/AdminBar';
 import Join from './Components/Admin/Join';
 
 
@@ -27,8 +26,8 @@ function App() {
   return (
     <Router>
       <>
-/        <Navbar />
-        {/* <WebSocketComponent  /> */}
+        <Navbar />
+        <WebSocketComponent  />
         <Routes>
           <Route path="/ctrlarea" element={<CtrlArea />} />
           <Route path="/wlpred" element={<WLpred />} />

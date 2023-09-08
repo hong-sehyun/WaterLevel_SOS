@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdNightShelter, MdOutlineWater } from 'react-icons/md'
 import { LuNavigationOff } from 'react-icons/lu'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { FiMenu } from 'react-icons/fi'
 import './navbar.css';
 import 'animate.css';
+import { useCookies } from 'react-cookie';
+
 
 function Navbar() {
+  const [cookies, setCookie, removeCookie] = useCookies(['jwtToken']);
+  const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
   const [showAdminMode, setShowAdminMode] = useState(false);
+
+  const handleLogout = () => {
+    removeCookie('jwtToken', { path: '/' });
+    navigate('/')
+  }
 
   return (
     <>
@@ -27,9 +36,17 @@ function Navbar() {
             <details role="list" dir="rtl">
               <summary aria-haspopup="listbox" role="link">관리자모드</summary>
               <ul role="listbox">
-                <li><Link to='/login'>로그인</Link></li>
-                <li><Link to='/register'>등록하기</Link></li>
-                <li><Link to='/regilist'>등록된 정보</Link></li>
+                {cookies.jwtToken ? (
+                  <li onClick={handleLogout}><a>로그아웃</a></li>
+                ) : (
+                  <li><Link to='/login'>로그인</Link></li>
+                )}
+                {cookies.jwtToken && (
+                  <>
+                    <li><Link to='/register'>등록하기</Link></li>
+                    <li><Link to='/regilist'>등록된 정보</Link></li>
+                  </>
+                )}
               </ul>
             </details>
           </li>
@@ -39,15 +56,26 @@ function Navbar() {
       {showModal && (
         <dialog className="animate__animated animate__fadeInDownBig" open>
           <article className='modalContainer'>
-            <div className='linkDiv' onClick={() => {setShowAdminMode(!showAdminMode); setShowModal(false);}}><Link to="/ctrlarea">통제(예정) 현황</Link></div>
+            <div className='linkDiv' onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }}><Link to="/ctrlarea">통제(예정) 현황</Link></div>
             <div className='linkDiv' onClick={() => setShowModal(false)}><Link to="/wlpred">수위 예측</Link></div>
             <div className='linkDiv' onClick={() => setShowModal(false)}><Link to="/shelter">대피소</Link></div>
             <div className='linkDiv' onClick={() => setShowAdminMode(!showAdminMode)}> <a>관리자 모드</a></div>
             {showAdminMode && (
               <>
-                <div className='linkDiv' onClick={() => {setShowAdminMode(!showAdminMode); setShowModal(false);}}><Link to='/login'>로그인</Link></div>
-                <div className='linkDiv' onClick={() => {setShowAdminMode(!showAdminMode); setShowModal(false);}}><Link to='/register'>등록하기</Link></div>
-                <div className='linkDiv' onClick={() => {setShowAdminMode(!showAdminMode); setShowModal(false);}}><Link to='/regilist'>등록된 정보</Link></div>
+                {cookies.jwtToken ? (
+
+                  <div className='linkDiv1' onClick={() => { handleLogout(); setShowAdminMode(!showAdminMode); setShowModal(false); }}><a>로그아웃</a></div>
+                ) : (
+
+                  <div className='linkDiv1' onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }}><Link to='/login'>로그인</Link></div>
+                )}
+                {cookies.jwtToken && (
+                  <>
+                    <div className='linkDiv1' onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }}><Link to='/register'>등록하기</Link></div>
+                    <div className='linkDiv1' onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }}><Link to='/regilist'>등록된 정보</Link></div>
+                  </>
+
+                )}
               </>
 
             )}
@@ -58,7 +86,7 @@ function Navbar() {
               <div className='linkDiv'>…</div>
             </details> */}
 
-            <a onClick={() => {setShowAdminMode(!showAdminMode); setShowModal(false);}} id='closeIcon'><AiOutlineCloseCircle /></a>
+            <a onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }} id='closeIcon'><AiOutlineCloseCircle /></a>
           </article>
         </dialog>
       )}

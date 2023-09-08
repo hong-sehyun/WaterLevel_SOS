@@ -60,17 +60,16 @@
 
 .modalContainer {
     width: 350px;
-    /* height: 500px; */
     font-size: 25px;
     display: flex;
     flex-direction: column;
 }
 
 .linkDiv, .modalContainer a {
-    flex: 1;                 /* Distribute space equally among children */
-    display: flex;           /* To center content vertically */
-    align-items: center;     /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
+    flex: 1;                 
+    display: flex;           
+    align-items: center;     
+    justify-content: center; 
     padding: 10px;
 
 }
@@ -88,3 +87,9 @@ nav li,
 .dialog div {
     color: black;
 } */
+
+
+.linkDiv1 {
+    background-color: rgba(238, 241, 245, 0.5);
+    font-size: 22px;
+}
