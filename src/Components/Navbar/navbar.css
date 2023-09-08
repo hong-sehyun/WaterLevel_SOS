@@ -51,9 +51,6 @@
     }
 }
 
-nav {
-    margin: 20px;
-}
 
 .linkDiv:not(:last-child) {
     border-bottom: 1px solid #ccc;
@@ -63,7 +60,7 @@ nav {
 
 .modalContainer {
     width: 350px;
-    height: 500px;
+    /* height: 500px; */
     font-size: 25px;
     display: flex;
     flex-direction: column;
@@ -74,11 +71,13 @@ nav {
     display: flex;           /* To center content vertically */
     align-items: center;     /* Center content vertically */
     justify-content: center; /* Center content horizontally */
+    padding: 10px;
 
 }
 
 #closeIcon {
-    font-size: 24px;
+    margin-top: 15px;
+    font-size: 30px;
 }
 
 /* nav, 

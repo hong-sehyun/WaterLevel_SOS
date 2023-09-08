@@ -27,8 +27,7 @@ function App() {
   return (
     <Router>
       <>
-        <AdminBar />
-        <Navbar />
+/        <Navbar />
         {/* <WebSocketComponent  /> */}
         <Routes>
           <Route path="/ctrlarea" element={<CtrlArea />} />

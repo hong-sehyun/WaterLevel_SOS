@@ -10,6 +10,8 @@ import 'animate.css';
 function Navbar() {
 
   const [showModal, setShowModal] = useState(false);
+  const [showAdminMode, setShowAdminMode] = useState(false);
+
   return (
     <>
       <nav className={showModal ? 'blurred' : ''}>
@@ -21,16 +23,42 @@ function Navbar() {
           <li><Link to="/ctrlarea">통제(예정) 현황</Link></li>
           <li><Link to="/wlpred">수위 예측</Link></li>
           <li><Link to="/shelter">대피소</Link></li>
+          <li>
+            <details role="list" dir="rtl">
+              <summary aria-haspopup="listbox" role="link">관리자모드</summary>
+              <ul role="listbox">
+                <li><Link to='/login'>로그인</Link></li>
+                <li><Link to='/register'>등록하기</Link></li>
+                <li><Link to='/regilist'>등록된 정보</Link></li>
+              </ul>
+            </details>
+          </li>
         </ul>
       </nav>
 
       {showModal && (
         <dialog className="animate__animated animate__fadeInDownBig" open>
           <article className='modalContainer'>
-              <div className='linkDiv' onClick={() => setShowModal(false)}><Link to="/ctrlarea">통제(예정) 현황</Link></div>
-              <div className='linkDiv' onClick={() => setShowModal(false)}><Link to="/wlpred">수위 예측</Link></div>
-              <div className='linkDiv' onClick={() => setShowModal(false)}><Link to="/shelter">대피소</Link></div>
-            <a onClick={() => setShowModal(false)} id='closeIcon'><AiOutlineCloseCircle /></a>
+            <div className='linkDiv' onClick={() => {setShowAdminMode(!showAdminMode); setShowModal(false);}}><Link to="/ctrlarea">통제(예정) 현황</Link></div>
+            <div className='linkDiv' onClick={() => setShowModal(false)}><Link to="/wlpred">수위 예측</Link></div>
+            <div className='linkDiv' onClick={() => setShowModal(false)}><Link to="/shelter">대피소</Link></div>
+            <div className='linkDiv' onClick={() => setShowAdminMode(!showAdminMode)}> <a>관리자 모드</a></div>
+            {showAdminMode && (
+              <>
+                <div className='linkDiv' onClick={() => {setShowAdminMode(!showAdminMode); setShowModal(false);}}><Link to='/login'>로그인</Link></div>
+                <div className='linkDiv' onClick={() => {setShowAdminMode(!showAdminMode); setShowModal(false);}}><Link to='/register'>등록하기</Link></div>
+                <div className='linkDiv' onClick={() => {setShowAdminMode(!showAdminMode); setShowModal(false);}}><Link to='/regilist'>등록된 정보</Link></div>
+              </>
+
+            )}
+
+            {/* <details className='linkDiv1'>
+              <summary className='linkDiv1'>Accordion 1</summary>
+              <div className='linkDiv'>…</div>
+              <div className='linkDiv'>…</div>
+            </details> */}
+
+            <a onClick={() => {setShowAdminMode(!showAdminMode); setShowModal(false);}} id='closeIcon'><AiOutlineCloseCircle /></a>
           </article>
         </dialog>
       )}
