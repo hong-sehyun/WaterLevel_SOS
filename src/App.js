@@ -1,9 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import WebSocketComponent from './Components/Main/WebSocketComponent';
 import Main from './Components/Main/Main';
 import CtrlArea from './Components/Main/CtrlArea';
 import WLpred from './Components/Main/WLpred';  
@@ -16,6 +15,8 @@ import RegiLoc from './Components/Admin/Setting/RegiLoc';
 import RegiList from './Components/Admin/Setting/RegiList';
 import MemberList from './Components/Admin/Setting/MemberList';
 import ShelterList from './Components/Admin/Setting/ShelterList';
+import Setting from './Components/Admin/Setting/Setting';
+import RegiShelter from './Components/Admin/Setting/RegiShelter';
 
 
 import Join from './Components/Admin/Join';
@@ -24,10 +25,10 @@ import Join from './Components/Admin/Join';
 
 function App() {
   return (
-    <Router>
+    
+    <BrowserRouter>
       <>
         <Navbar />
-        <WebSocketComponent  />
         <Routes>
           <Route path="/ctrlarea" element={<CtrlArea />} />
           <Route path="/wlpred" element={<WLpred />} />
@@ -38,9 +39,15 @@ function App() {
           <Route path="/register" element={<Register />} />  
           <Route path="/register/location" element={<RegiLoc />} /> 
 
-          <Route path="/regilist" element={<RegiList />} />  
+          {/* <Route path="/regilist" element={<RegiList />} />  
           <Route path="/regilist/memberList" element={<MemberList />} /> 
-          <Route path="/regilist/shelterList" element={<ShelterList />} /> 
+          <Route path="/regilist/shelterList" element={<ShelterList />} />  */}
+
+
+          <Route path='/setting' element={<Setting/>} />
+          <Route path="/setting/memberList" element={<MemberList />} /> 
+          <Route path="/setting/shelterList" element={<ShelterList />} /> 
+          <Route path="/setting/regiShelter" element={<RegiShelter />} /> 
 
 
           <Route path="/join" element={<Join />} />  
@@ -49,7 +56,7 @@ function App() {
         </Routes>
         <Footer />
       </>
-    </Router>
+    </BrowserRouter>
   );
 }
 
