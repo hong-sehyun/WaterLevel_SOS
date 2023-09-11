@@ -1,11 +1,15 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const path = require('path');
 const app = express();
 
-const PORT = 3001;
+const PORT = 3000;
 
 app.use(cors());
+
+app.use(express.static(path.join(__dirname, 'build')));
+
 
 app.get('/fetchData', async (req, res) => {
     const { tm1, tm2, stn, disp, help, authKey } = req.query;
@@ -19,6 +23,10 @@ app.get('/fetchData', async (req, res) => {
         console.error("Error fetching data from the API:", error);
         res.status(500).json({ message: "Error fetching data from the API" });
     }
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(PORT, () => {
