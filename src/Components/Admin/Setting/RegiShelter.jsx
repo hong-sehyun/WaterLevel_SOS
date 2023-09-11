@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
+import { useNavigate } from 'react-router-dom';
+
+import { useCookies } from 'react-cookie';
+
 import axios from 'axios';
 
 
 const RegiShelter = () => {
-    const [address, setAddress] = useState('');
-    const [name, setName] = useState('');
-
+    const address = useRef(null);
+    const name = useRef(null);
+    const navigate = useNavigate();
+    const [cookies] = useCookies(['jwtToken']);
 
 
     const onComplete = (data) => {
-        console.log('onComplete data:', data);
         let fullAddress = data.address;
         let extraAddress = '';
 
@@ -24,7 +28,7 @@ const RegiShelter = () => {
             fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
 
-        setAddress(fullAddress);
+        address.current.value = fullAddress;
     }
 
     const open = useDaumPostcodePopup(onComplete);
@@ -37,18 +41,21 @@ const RegiShelter = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('handleSubmit - sending data:', { address, name });
+        const token = cookies.jwtToken;
+
 
         try {
-            const response = await axios.post('http://10.125.121.184:8080/shelter', {
-                address,
-                name
+            await axios.post('http://10.125.121.184:8080/shelter', {
+                address: address.current.value,
+                name: name.current.value
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
-
-            console.log('Response from server:', response);
-
-            alert('등록되었습니다!')
+            alert('등록되었습니다!');
+            navigate('/setting/shelterList');
         } catch (error) {
             console.log(error);
 
@@ -59,26 +66,23 @@ const RegiShelter = () => {
 
 
     return (
-        <div>
-            <details>
-                <summary role="button" class="secondary">대피소 등록</summary>
-                <form onSubmit={handleSubmit}>
-                    <div className="grid">
 
-                        <input
-                            type="text"
-                            value={address}
-                            placeholder="주소 검색"
-                            onClick={handleClick}
-                            readOnly
-                        />
-                        <button class="secondary outline" onClick={handleClick}>주소 검색</button>
-                    </div>
-                    <input type='text' value={name} placeholder="대피소명 입력" />
-                    <button type='suubmit'>등록하기</button>
-                </form>
-            </details>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <div className="grid">
+
+                <input
+                    type="text"
+                    ref={address}
+                    placeholder="주소 검색"
+                    onClick={handleClick}
+                    readOnly
+                />
+                <button class="secondary outline" onClick={handleClick}>주소 검색</button>
+            </div>
+            <input type='text' ref={name} placeholder="대피소명 입력" />
+            <button type='submit'>등록하기</button>
+        </form>
+
     );
 }
 
