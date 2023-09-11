@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
+import WebSocketComponent from './WebSocketComponent';
 import { Chart, LineController, LineElement, PointElement, CategoryScale, LinearScale, registerables } from 'chart.js';
 Chart.register(LineController, LineElement, PointElement, CategoryScale, LinearScale, ...registerables);
+
+
 const WLpred = () => {
   const [wl, setWl] = useState(null);
 
@@ -22,7 +25,7 @@ const WLpred = () => {
     ws.onclose = () => {
       console.log('연결 끊어짐');
     };
-    
+
     ws.onerror = (error) => {
       console.error(error);
     };
@@ -35,8 +38,8 @@ const WLpred = () => {
 
   const generateTimeLabels = (start, count) => {
     let timeLabels = [];
-    let currentHour = parseInt(start.slice(-4,-2), 10);
-    let currentDay = parseInt(start.slice(0,8), 10);
+    let currentHour = parseInt(start.slice(-4, -2), 10);
+    let currentDay = parseInt(start.slice(0, 8), 10);
 
     for (let i = 0; i < count; i++) {
       timeLabels.push(`${String(currentDay).padStart(2, '0')}${String(currentHour).padStart(2, '0')}`);
@@ -59,14 +62,15 @@ const WLpred = () => {
     datasets: [{
       label: 'Water Level (EL.m)',
       data: wl.list,
-      backgroundColor: 'rgba(75, 192, 192, 0.5)',
-      borderColor: 'rgba(75, 192, 192, 1)',
+      backgroundColor: wl.list.map((_, idx) => idx < 6 ? 'rgba(75, 192, 192, 0.5)' : 'rgba(255, 99, 132, 0.5)'),
+      borderColor: wl.list.map((_, idx) => idx < 6 ? 'rgba(75, 192, 192, 1)' : 'rgba(255, 99, 132, 1)'),
       borderWidth: 1
     }]
   };
 
   return (
     <>
+      <WebSocketComponent />
       <h1>수위예측</h1>
       {/* <div>
         {wl && (
@@ -81,9 +85,9 @@ const WLpred = () => {
           </>
         )}
       </div> */}
-       {wl && (
+      {wl && (
         <>
-          <Bar 
+          <Bar
             data={data}
             options={{
               scales: {
