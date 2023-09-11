@@ -37,12 +37,11 @@ const WLpred = () => {
 
 
   const generateTimeLabels = (start, count) => {
-    let timeLabels = [];
     let currentHour = parseInt(start.slice(-4, -2), 10);
-    let currentDay = parseInt(start.slice(0, 8), 10);
+
 
     for (let i = 0; i < count; i++) {
-      timeLabels.push(`${String(currentDay).padStart(2, '0')}${String(currentHour).padStart(2, '0')}`);
+      timeLabels.push(`${String(currentHour).padStart(2, '0')}시`);
       currentHour += 1;
 
       if (currentHour === 24) {
