@@ -10,6 +10,7 @@ const RegiShelter = () => {
 
 
     const onComplete = (data) => {
+        console.log('onComplete data:', data);
         let fullAddress = data.address;
         let extraAddress = '';
 
@@ -36,9 +37,20 @@ const RegiShelter = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('handleSubmit - sending data:', { address, name });
+
         try {
-            await axios.post('http://10.125.121.184:8080/shelter')
+            const response = await axios.post('http://10.125.121.184:8080/shelter', {
+                address,
+                name
+            });
+
+
+            console.log('Response from server:', response);
+
+            alert('등록되었습니다!')
         } catch (error) {
+            console.log(error);
 
         }
 
@@ -62,7 +74,7 @@ const RegiShelter = () => {
                         />
                         <button class="secondary outline" onClick={handleClick}>주소 검색</button>
                     </div>
-                    <input type='text' value={name} placeholder="대피소명 입력"/>
+                    <input type='text' value={name} placeholder="대피소명 입력" />
                     <button type='suubmit'>등록하기</button>
                 </form>
             </details>

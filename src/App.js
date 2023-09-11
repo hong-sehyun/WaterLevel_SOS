@@ -11,11 +11,11 @@ import Shelter from './Components/Main/Shelter';
 import Footer from './Components/Footer/Footer';
 import Login from './Components/Admin/Login';
 
-import Register from './Components/Admin/Register/Register';
-import RegiLoc from './Components/Admin/Register/RegiLoc';
-import RegiList from './Components/Admin/Register/RegiList';
-import MemberList from './Components/Admin/Register/MemberList';
-import ShelterList from './Components/Admin/Register/ShelterList';
+import Register from './Components/Admin/Setting/Register';
+import RegiLoc from './Components/Admin/Setting/RegiLoc';
+import RegiList from './Components/Admin/Setting/RegiList';
+import MemberList from './Components/Admin/Setting/MemberList';
+import ShelterList from './Components/Admin/Setting/ShelterList';
 
 
 import Join from './Components/Admin/Join';
