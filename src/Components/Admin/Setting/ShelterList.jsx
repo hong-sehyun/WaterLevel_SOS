@@ -21,15 +21,15 @@ const ShelterList = () => {
         }
 
         fetchShelters();
-    },[])
+    }, [])
 
 
     const handleDelete = async (id) => {
         const token = cookies.jwtToken;
-        
+
         try {
             await axios.delete(`http://10.125.121.184:8080/shelter/${id}`, {
-                headers : {
+                headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
@@ -39,7 +39,7 @@ const ShelterList = () => {
         } catch (error) {
             console.error(error);
         }
-        } 
+    }
     return (
         <div>
             <h1>Shelter List</h1>
