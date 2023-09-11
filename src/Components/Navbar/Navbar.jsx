@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { MdNightShelter, MdOutlineWater } from 'react-icons/md'
+import { MdSettings } from 'react-icons/md'
+import { BiLogOut, BiLogIn } from 'react-icons/bi'
 import { LuNavigationOff } from 'react-icons/lu'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { FiMenu } from 'react-icons/fi'
@@ -37,14 +38,15 @@ function Navbar() {
               <summary aria-haspopup="listbox" role="link">관리자모드</summary>
               <ul role="listbox">
                 {cookies.jwtToken ? (
-                  <li onClick={handleLogout}><a>로그아웃</a></li>
+                  <li onClick={handleLogout}><a>로그아웃 <BiLogOut /></a></li>
                 ) : (
-                  <li><Link to='/login'>로그인</Link></li>
+                  <li><Link to='/login'>로그인 <BiLogIn /></Link></li>
                 )}
                 {cookies.jwtToken && (
                   <>
-                    <li><Link to='/register'>등록하기</Link></li>
-                    <li><Link to='/regilist'>등록된 정보</Link></li>
+                    <li><Link to='/setting'>관리 <MdSettings /></Link></li>
+                    {/* <li><Link to='/register'>등록하기</Link></li> */}
+                    {/* <li><Link to='/regilist'>등록된 정보</Link></li> */}
                   </>
                 )}
               </ul>
@@ -64,15 +66,17 @@ function Navbar() {
               <>
                 {cookies.jwtToken ? (
 
-                  <div className='linkDiv1' onClick={() => { handleLogout(); setShowAdminMode(!showAdminMode); setShowModal(false); }}><a>로그아웃</a></div>
+                  <div className='linkDiv1' onClick={() => { handleLogout(); setShowAdminMode(!showAdminMode); setShowModal(false); }}><a><BiLogOut /> 로그아웃</a></div>
                 ) : (
 
                   <div className='linkDiv1' onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }}><Link to='/login'>로그인</Link></div>
                 )}
                 {cookies.jwtToken && (
                   <>
-                    <div className='linkDiv1' onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }}><Link to='/register'>등록하기</Link></div>
-                    <div className='linkDiv1' onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }}><Link to='/regilist'>등록된 정보</Link></div>
+                    <div className='linkDiv1' onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }}><Link to='/setting'><MdSettings /> 관리</Link></div>
+
+                    {/* <div className='linkDiv1' onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }}><Link to='/register'>등록하기</Link></div>
+                    <div className='linkDiv1' onClick={() => { setShowAdminMode(!showAdminMode); setShowModal(false); }}><Link to='/regilist'>등록된 정보</Link></div> */}
                   </>
 
                 )}
