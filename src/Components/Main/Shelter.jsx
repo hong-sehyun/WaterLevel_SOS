@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import WebSocketComponent from './WebSocketComponent';
+import './main.css';
 
 const Shelter = () => {
   const [shelters, setShelters] = useState([]);
@@ -12,7 +13,7 @@ const Shelter = () => {
   const defaultPosition = new window.kakao.maps.LatLng(35.2, 127.6);
   const [mapCenter, setMapCenter] = useState(defaultPosition);
 
-  
+
   const geocoder = new window.kakao.maps.services.Geocoder();
 
 
@@ -33,7 +34,6 @@ const Shelter = () => {
         setMapCenter(new window.kakao.maps.LatLng(result[0].y, result[0].x));
       }
     });
-
 
   };
 
@@ -109,17 +109,32 @@ const Shelter = () => {
 
   return (
     <>
-    <WebSocketComponent />
+      <WebSocketComponent />
       <div>
         <div id="map" style={{ width: '100%', height: '400px' }}></div>
-        <ul>
-          {shelters.map(shelter => (
-            <li key={shelter.idshelter} onClick={() => onShelterClick(shelter)}
-              style={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? { color: "black", fontWeight: "bolder" } : {}}>
-              {shelter.name} - {shelter.address}
-            </li>
-          ))}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>대피소명</th>
+              <th>주소</th>
+            </tr>
+          </thead>
+          <tbody>
+            {shelters.map((shelter, idx) => (
+              <tr
+                key={shelter.idshelter}
+                onClick={() => onShelterClick(shelter)}
+              >
+
+                <td className={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? "selected-shelter" : ""}>{idx + 1}</td>
+                <td className={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? "selected-shelter" : ""}>{shelter.name}</td>
+                <td className={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? "selected-shelter" : ""}>{shelter.address}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
       </div>
       <Link to='/'>범람알림 받으러 가기</Link>
     </>

@@ -48,3 +48,12 @@
 #txt {
     color: rgb(255, 255, 255, 0.7);
 }
+
+.selected-shelter {
+    color: black;
+    font-weight: bolder;
+}
+
+#map {
+    margin-bottom: 20px;
+}
