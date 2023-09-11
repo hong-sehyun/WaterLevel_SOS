@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import WebSocketComponent from './WebSocketComponent';
 
 const Shelter = () => {
   const [shelters, setShelters] = useState([]);
@@ -109,6 +109,7 @@ const Shelter = () => {
 
   return (
     <>
+    <WebSocketComponent />
       <div>
         <div id="map" style={{ width: '100%', height: '400px' }}></div>
         <ul>

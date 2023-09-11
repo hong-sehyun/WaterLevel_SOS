@@ -2,6 +2,7 @@
 import React, { useEffect, useRef  } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import WebSocketComponent from './WebSocketComponent';
 
 const CtrlArea = () => {
   const mapRef = useRef(null);
@@ -56,6 +57,7 @@ const CtrlArea = () => {
 
   return (
     <>
+    <WebSocketComponent />
       <div id="map" ref={mapRef} style={{ width: '100%', height: '500px' }}></div>
       <Link to='/'>범람알림 받으러 가기</Link>
     </>
