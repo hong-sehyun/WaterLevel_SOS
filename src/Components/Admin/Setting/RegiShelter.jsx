@@ -10,6 +10,7 @@ const RegiShelter = () => {
     const name = useRef(null);
     const navigate = useNavigate();
     const [cookies] = useCookies(['jwtToken']);
+    const open = useDaumPostcodePopup("//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js");
 
 
     const onComplete = (data) => {
@@ -25,12 +26,10 @@ const RegiShelter = () => {
             }
             fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
-
         address.current.value = fullAddress;
     }
 
-    const open = useDaumPostcodePopup(onComplete);
-
+    
     const handleClick = () => {
         // 주소검색 후 주소 클릭 시 해당 함수 수행
         open({ onComplete: onComplete });
@@ -40,6 +39,12 @@ const RegiShelter = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = cookies.jwtToken;
+
+        // 주소 or 대피소명이 null일 때
+        if (!address.current.value.trim() || !name.current.value.trim()) {
+            alert('주소와 대피소명을 입력하세요.');
+            return;
+        }
 
 
         try {
@@ -51,36 +56,29 @@ const RegiShelter = () => {
                     'Authorization': `Bearer ${token}`
                 }
             });
-
             alert('등록되었습니다!');
             navigate('/setting/shelterList');
         } catch (error) {
             console.log(error);
-
         }
-
     }
 
 
 
     return (
-
         <form onSubmit={handleSubmit}>
             <div className="grid">
-
                 <input
                     type="text"
                     ref={address}
-                    placeholder="주소 검색"
+                    placeholder="주소 입력"
                     onClick={handleClick}
                     readOnly
                 />
-                <button class="secondary outline" onClick={handleClick}>주소 검색</button>
             </div>
             <input type='text' ref={name} placeholder="대피소명 입력" />
             <button type='submit'>등록하기</button>
         </form>
-
     );
 }
 
