@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
 import WebSocketComponent from './WebSocketComponent';
+import './main.css';
 import { Chart, LineController, LineElement, PointElement, CategoryScale, LinearScale, registerables } from 'chart.js';
 Chart.register(LineController, LineElement, PointElement, CategoryScale, LinearScale, ...registerables);
 
@@ -56,22 +57,29 @@ const WLpred = () => {
 
   const data = wl && {
     labels: [
-      ...generateTimeLabels(wl.pastStart, 6),
-      ...generateTimeLabels(wl.predStart, wl.list.length - 6)
+      ...generateTimeLabels(wl.pastStart, wl.list.length - 3),
+      ...generateTimeLabels(wl.predStart, 3)
     ],
     datasets: [{
-      label: 'Water Level (EL.m)',
       data: wl.list,
-      backgroundColor: wl.list.map((_, idx) => idx < 6 ? 'rgba(75, 192, 192, 0.5)' : 'rgba(255, 99, 132, 0.5)'),
-      borderColor: wl.list.map((_, idx) => idx < 6 ? 'rgba(75, 192, 192, 1)' : 'rgba(255, 99, 132, 1)'),
+      backgroundColor: wl.list.map((_, idx) => idx < wl.list.length - 3 ? 'rgba(75, 192, 192, 0.5)' : 'rgba(255, 99, 132, 0.5)'),
+      borderColor: wl.list.map((_, idx) => idx < wl.list.length - 3 ? 'rgba(75, 192, 192, 1)' : 'rgba(255, 99, 132, 1)'),
       borderWidth: 1
     }]
   };
 
   return (
-    <>
+    <div className='WLpred-article'>
       <WebSocketComponent />
       <h1>수위예측</h1>
+      <div className='legend-div'>
+        <div className="legend">
+          <div className='past'></div> <span>과거 수위(EL.m)</span>
+        </div>
+        <div className="legend">
+        <div className='pred'></div> <span>예측 수위(EL.m)</span>
+        </div>
+        </div>
       {/* <div>
         {wl && (
           <>
@@ -90,18 +98,23 @@ const WLpred = () => {
           <Bar
             data={data}
             options={{
+              plugins: {
+                legend: {
+                  display: false
+                }
+              },
               scales: {
                 y: {
                   beginAtZero: true,
                   title: {
                     display: true,
-                    text: 'Water Level (EL.m)'
+                    text: '수위 (EL.m)'
                   }
                 },
                 x: {
                   title: {
                     display: true,
-                    text: 'Time'
+                    text: '시간'
                   }
                 }
               }
@@ -110,7 +123,7 @@ const WLpred = () => {
         </>
       )}
       <Link to='/'>범람알림 받으러 가기 </Link>
-    </>
+    </div>
   );
 }
 

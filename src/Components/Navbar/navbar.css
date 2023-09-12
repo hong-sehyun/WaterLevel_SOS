@@ -7,49 +7,29 @@
 
 .navContainer {
     display: flex;
+    padding: 20px;
+    padding-left: 192px;
+    padding-right: 192px;
 }
 
 .navDiv {
     display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    height: 100px; 
-    width: 200px; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 200px;
 }
 
-@media (max-width: 768px) {
-    .navDiv {
-        width: 150px; 
-    }
-}
 
 .navName {
     font-size: 18px;
 }
 
 .title {
-    font-size:30px;
+    font-size: 30px;
 }
 
-@media (max-width: 768px) {
-    .category:not(.showCategory) li:not(#more-icon) {
-        display: none;
-    }
-    #more-icon {
-        display: inline-block;
-        cursor: pointer;
-    }
-}
-
-@media (min-width: 769px) {
-    #more-icon {
-        display: none;
-    }
-    .category li {
-        display: inline-block;
-    }
-}
 
 
 .linkDiv:not(:last-child) {
@@ -65,11 +45,12 @@
     flex-direction: column;
 }
 
-.linkDiv, .modalContainer a {
-    flex: 1;                 
-    display: flex;           
-    align-items: center;     
-    justify-content: center; 
+.linkDiv,
+.modalContainer a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
 
 }
@@ -92,4 +73,52 @@ nav li,
 .linkDiv1 {
     background-color: rgba(238, 241, 245, 0.5);
     font-size: 22px;
+}
+
+@media (max-width: 768px) {
+    .navDiv {
+        width: 150px;
+    }
+
+    .category:not(.showCategory) li:not(#more-icon) {
+        display: none;
+    }
+
+    #more-icon {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .blurred {
+        padding: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .navContainer {
+        display: flex;
+        padding: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .navContainer {
+        display: flex;
+        padding: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+}
+
+@media (min-width: 769px) {
+    #more-icon {
+        display: none;
+    }
+
+    .category li {
+        display: inline-block;
+    }
 }

@@ -24,7 +24,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className={showModal ? 'blurred' : ''}>
+      <nav className={showModal ? 'blurred' : 'navContainer'}>
         <ul>
           <li className='title'><strong><Link to="/">하천 범람 SOS</Link></strong></li>
         </ul>
