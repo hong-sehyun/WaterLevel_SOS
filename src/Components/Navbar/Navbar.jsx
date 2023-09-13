@@ -4,6 +4,7 @@ import { MdSettings } from 'react-icons/md'
 import { BiLogOut, BiLogIn } from 'react-icons/bi'
 import { LuNavigationOff } from 'react-icons/lu'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
+import { IoIosHelpBuoy } from 'react-icons/io'
 import { FiMenu } from 'react-icons/fi'
 import './navbar.css';
 import 'animate.css';
@@ -26,16 +27,19 @@ function Navbar() {
     <>
       <nav className={showModal ? 'blurred' : 'navContainer'}>
         <ul>
-          <li className='title'><strong><Link to="/">하천 범람 SOS</Link></strong></li>
+          <li className='title'><strong><Link to="/">하천 범람 SOS</Link></strong> </li>
         </ul>
         <ul className='category'>
           <li id="more-icon" onClick={() => setShowModal(true)}><FiMenu /></li>
-          <li><Link to="/ctrlarea">통제(예정) 현황</Link></li>
-          <li><Link to="/wlpred">수위 예측</Link></li>
-          <li><Link to="/shelter">대피소</Link></li>
+          <div className='c'>
+          <li><Link to="/ctrlarea" data-replace="통제(예정) 현황"><span>통제(예정) 현황</span></Link></li>
+        <li><Link to="/wlpred" data-replace="수위 예측"><span>수위 예측</span></Link></li>
+        <li><Link to="/shelter" data-replace="대피소"><span>대피소</span></Link></li>
+
+          </div>
           <li>
             <details role="list" dir="rtl">
-              <summary aria-haspopup="listbox" role="link">관리자모드</summary>
+              <summary aria-haspopup="listbox" >관리자모드</summary>
               <ul role="listbox">
                 {cookies.jwtToken ? (
                   <li onClick={handleLogout}><a>로그아웃 <BiLogOut /></a></li>

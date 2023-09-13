@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
 import WebSocketComponent from './WebSocketComponent';
 import './main.css';
+import WLpredIcon from '../../Assets/WLpred.svg'
 import { Chart, LineController, LineElement, PointElement, CategoryScale, LinearScale, registerables } from 'chart.js';
 Chart.register(LineController, LineElement, PointElement, CategoryScale, LinearScale, ...registerables);
 
@@ -69,18 +70,26 @@ const WLpred = () => {
   };
 
   return (
-    <div className='WLpred-article'>
-      <WebSocketComponent />
-      <h1>수위예측</h1>
-      <div className='legend-div'>
-        <div className="legend">
-          <div className='past'></div> <span>과거 수위(EL.m)</span>
+    <>
+      <div className='icon-container'>
+        <div className="icon-div">
+          <img src={WLpredIcon} alt="Shelter" className='nav-icon' />
+          <div className='nav-title'>수위 예측</div>
         </div>
-        <div className="legend">
-        <div className='pred'></div> <span>예측 수위(EL.m)</span>
+        <div className="nav-txt">예측된 유량 데이터를 보여드립니다</div>
+      </div>
+      <div className='main-container'>
+        <WebSocketComponent />
+        <h1>수위예측</h1>
+        <div className='legend-div'>
+          <div className="legend">
+            <div className='past'></div> <span>과거 수위(EL.m)</span>
+          </div>
+          <div className="legend">
+            <div className='pred'></div> <span>예측 수위(EL.m)</span>
+          </div>
         </div>
-        </div>
-      {/* <div>
+        {/* <div>
         {wl && (
           <>
             <h2>Past Start: {wl.pastStart}</h2>
@@ -93,37 +102,38 @@ const WLpred = () => {
           </>
         )}
       </div> */}
-      {wl && (
-        <>
-          <Bar
-            data={data}
-            options={{
-              plugins: {
-                legend: {
-                  display: false
-                }
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  title: {
-                    display: true,
-                    text: '수위 (EL.m)'
+        {wl && (
+          <>
+            <Bar
+              data={data}
+              options={{
+                plugins: {
+                  legend: {
+                    display: false
                   }
                 },
-                x: {
-                  title: {
-                    display: true,
-                    text: '시간'
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    title: {
+                      display: true,
+                      text: '수위 (EL.m)'
+                    }
+                  },
+                  x: {
+                    title: {
+                      display: true,
+                      text: '시간'
+                    }
                   }
                 }
-              }
-            }}
-          />
-        </>
-      )}
-      <Link to='/'>범람알림 받으러 가기 </Link>
-    </div>
+              }}
+            />
+          </>
+        )}
+        <Link to='/'>범람알림 받으러 가기 </Link>
+      </div>
+    </>
   );
 }
 
