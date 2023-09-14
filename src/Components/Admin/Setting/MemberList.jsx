@@ -25,19 +25,19 @@ const MemberList = () => {
 
 
 
-  const handleDelete = async (idcontact) => {
+  const handleDelete = async (idmember) => {
     const userConfirmed = window.confirm('정말로 삭제하시겠습니까?');
 
     if (!userConfirmed) {
         return; 
     }
     try {
-      const resp = await axios.delete(`http://10.125.121.184:8080/contact/${idcontact}`, {
+      const resp = await axios.delete(`http://10.125.121.184:8080/contact/${idmember}`, {
         headers: {
           'Authorization': cookies.jwtToken
         }
       })
-      setContactList(prevContacts => prevContacts.filter(contact => contact.idcontact !== idcontact));
+      setContactList(prevContacts => prevContacts.filter(contact => contact.idmember !== idmember));
 
     } catch (error) {
       console.error(error);
@@ -48,7 +48,7 @@ const MemberList = () => {
   return (
     <table>
       <tr>
-        <th>index</th>
+        <th>#</th>
         <th>이름</th>
         <th>전화번호</th>
         <th></th>
@@ -56,10 +56,10 @@ const MemberList = () => {
 
       {contactList.map((contact, index) => (
         <tr key={index}>
-          <td>{contact.idcontact}</td>
+          <td>{contact.idmember}</td>
           <td>{contact.name}</td>
           <td>{contact.contact}</td>
-          <td><a onClick={() => handleDelete(contact.idcontact)}>삭제</a></td>
+          <td><a onClick={() => handleDelete(contact.idmember)}>삭제</a></td>
 
         </tr>
       ))}
