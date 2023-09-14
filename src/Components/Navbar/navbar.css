@@ -27,13 +27,10 @@ nav {
     font-size: 30px;
 }
 
-
-
 .linkDiv:not(:last-child) {
     border-bottom: 1px solid #ccc;
 
 }
-
 
 .modalContainer {
     width: 350px;
@@ -65,90 +62,50 @@ nav {
     color: #18272F;
     font-weight: 700;
     vertical-align: top;
-  }
-  
-  .category .c li a::before,
-  .category .c li a::after {
+    margin: 0;
+    padding: 0;
+}
+
+.category .c li a::before,
+.category .c li a::after {
     content: '';
     position: absolute;
     width: 100%;
-    left: 0;
-  }
-  
-  /* .category .c li a::before {
-    background-color: #54b3d6;
-    height: 2px;
-    bottom: 0;
-    transform-origin: 100% 50%;
-    transform: scaleX(0);
-    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-  } */
-  
-  .category .c li a::after {
+    left: 0px;
+}
+
+
+.category .c li a::after {
     content: attr(data-replace);
     height: 100%;
-    top: 0;
-    transform-origin: 100% 50%;
-    transform: translate3d(200%, 0, 0);
-    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-    color: #54b3d6;
-  }
-  
-  .category .c li a:hover::before {
+    transform-origin: 100%;
+    transform: translate3d(0, -200%, 0);
+    transition: transform .4s cubic-bezier(1, 0, 0, 1);
+    color:#537e92;
+}
+
+.category .c li a:hover::before {
     transform-origin: 0% 50%;
-    transform: scaleX(1);
-  }
-  
-  .category .c li a:hover::after {
+    transform: scaleY(1);
+}
+
+.category .c li a:hover::after {
     transform: translate3d(0, 0, 0);
-  }
-  
-  .category .c li a span {
+}
+
+.category .c li a span {
     display: inline-block;
-    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-  }
-  
-  .category .c li a:hover span {
-    transform: translate3d(-200%, 0, 0);
-  }
+    transition: transform .4s cubic-bezier(1, 0, 0, 1);
+}
+
+.category .c li a:hover span {
+    transform: translate3d(0, 200%, 0);
+}
+
 .category .c li a:hover {
     text-decoration: none;
 }
 
-
-/* .c li {
-    animation-name: none !important;
-}
-
-
-.c li:hover {
-    animation-name: pulse !important;
-    animation-duration: 1s;
-    animation-fill-mode: both;
-    animation-timing-function: ease-out;
-}
-
-
-@keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
-  } */
-
-/* nav, 
-nav a, 
-nav li, 
-.dialog, 
-.dialog a, 
-.dialog div {
-    color: black;
-} */
 
 .linkDiv1 {
     background-color: rgba(238, 241, 245, 0.5);
