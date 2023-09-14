@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import WebSocketComponent from './WebSocketComponent';
 import './main.css';
+import ShelterIcon from '../../Assets/shelter.svg'
 
 const Shelter = () => {
   const [shelters, setShelters] = useState([]);
@@ -70,7 +71,7 @@ const Shelter = () => {
             const marker = new window.kakao.maps.Marker({
               position: coords
             });
-            marker.setOpacity(0.5);
+            marker.setOpacity(0.6);
 
             // 마커 클릭 이벤트
             window.kakao.maps.event.addListener(marker, 'click', function () {
@@ -109,34 +110,44 @@ const Shelter = () => {
 
   return (
     <>
-      <WebSocketComponent />
-      <div>
-        <div id="map" style={{ width: '100%', height: '400px' }}></div>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>대피소명</th>
-              <th>주소</th>
-            </tr>
-          </thead>
-          <tbody>
-            {shelters.map((shelter, idx) => (
-              <tr
-                key={shelter.idshelter}
-                onClick={() => onShelterClick(shelter)}
-              >
-
-                <td className={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? "selected-shelter" : ""}>{idx + 1}</td>
-                <td className={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? "selected-shelter" : ""}>{shelter.name}</td>
-                <td className={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? "selected-shelter" : ""}>{shelter.address}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
+      <div className='icon-container'>
+        <div className="icon-div">
+          <img src={ShelterIcon} alt="Shelter" className='nav-icon' />
+          <div className='nav-title'>대피소</div>
+        </div>
+        <div className="nav-txt">대피소의 위치를 안내해드립니다</div>
       </div>
-      <Link to='/'>범람알림 받으러 가기</Link>
+      <div className="main-container">
+
+        <WebSocketComponent />
+        <div>
+          <div id="map" style={{ width: '100%', height: '400px' }}></div>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>대피소명</th>
+                <th>주소</th>
+              </tr>
+            </thead>
+            <tbody>
+              {shelters.map((shelter, idx) => (
+                <tr
+                  key={shelter.idshelter}
+                  onClick={() => onShelterClick(shelter)}
+                >
+
+                  <td className={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? "selected-shelter" : ""}>{idx + 1}</td>
+                  <td className={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? "selected-shelter" : ""}>{shelter.name}</td>
+                  <td className={selectedShelter && selectedShelter.idshelter === shelter.idshelter ? "selected-shelter" : ""}>{shelter.address}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+        </div>
+        <Link to='/'>범람알림 받으러 가기</Link>
+      </div>
     </>
   );
 }
