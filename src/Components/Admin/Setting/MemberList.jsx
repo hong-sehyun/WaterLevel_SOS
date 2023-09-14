@@ -29,7 +29,7 @@ const MemberList = () => {
     const userConfirmed = window.confirm('정말로 삭제하시겠습니까?');
 
     if (!userConfirmed) {
-        return; 
+      return;
     }
     try {
       const resp = await axios.delete(`http://10.125.121.184:8080/contact/${idmember}`, {
@@ -46,24 +46,34 @@ const MemberList = () => {
   }
 
   return (
-    <table>
-      <tr>
-        <th>#</th>
-        <th>이름</th>
-        <th>전화번호</th>
-        <th></th>
-      </tr>
-
-      {contactList.map((contact, index) => (
-        <tr key={index}>
-          <td>{contact.idmember}</td>
-          <td>{contact.name}</td>
-          <td>{contact.contact}</td>
-          <td><a onClick={() => handleDelete(contact.idmember)}>삭제</a></td>
-
+    <>
+    <div className='nav-main'>
+        <div className='admin-nav'>
+          <h4>알림 등록 이용자 목록</h4>
+        </div>
+      </div>
+    <div className="setting-main">
+      <table>
+        <tr>
+          <th>#</th>
+          <th>이름</th>
+          <th>전화번호</th>
+          <th></th>
         </tr>
-      ))}
-    </table>
+
+        {contactList.map((contact, index) => (
+          <tr key={index}>
+            <td>{contact.idmember}</td>
+            <td>{contact.name}</td>
+            <td>{contact.contact}</td>
+            <td><a onClick={() => handleDelete(contact.idmember)}>삭제</a></td>
+
+          </tr>
+        ))}
+      </table>
+
+    </div>
+    </>
   )
 }
 

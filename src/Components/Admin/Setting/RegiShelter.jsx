@@ -67,7 +67,7 @@ const RegiShelter = () => {
 
 
     return (
-        <article className='setting-article'>
+        <div className='setting-main'>
             <form onSubmit={handleSubmit}>
                 <div className="grid">
                     <input
@@ -82,7 +82,7 @@ const RegiShelter = () => {
                 <button type='submit'>등록하기</button>
             </form>
             <Link to='/setting/shelterList'>목록으로</Link>
-        </article>
+        </div>
     );
 }
 

@@ -42,28 +42,34 @@ const ShelterList = () => {
         }
     }
     return (
-        <article className='setting-article'>
-            <div>
-                <h1>대피소 목록</h1>
-                <table>
-                    <tr>
-                        <th scope='col'>#</th>
-                        <th scope='col'>장소</th>
-                        <th scope='col'>주소</th>
-                        <th></th>
-                    </tr>
-                    {shelters.map(shelter => (
-                        <tr key={shelter.idshelter}>
-                            <td>{shelter.idshelter}</td>
-                            <td>{shelter.name}</td>
-                            <td>{shelter.address}</td>
-                            <td><a onClick={() => handleDelete(shelter.idshelter)}>삭제</a></td>
-                        </tr>
-                    ))}
-                </table>
-                <Link to='/setting/regiShelter' > 등록하기</Link>
+        <>
+            <div className='nav-main'>
+                <div className='admin-nav'>
+                    <h4>대피소 목록</h4>
+                </div>
             </div>
-        </article>
+            <div className='setting-main'>
+                <div>
+                    <table>
+                        <tr>
+                            <th scope='col'>#</th>
+                            <th scope='col'>장소</th>
+                            <th scope='col'>주소</th>
+                            <th></th>
+                        </tr>
+                        {shelters.map(shelter => (
+                            <tr key={shelter.idshelter}>
+                                <td>{shelter.idshelter}</td>
+                                <td>{shelter.name}</td>
+                                <td>{shelter.address}</td>
+                                <td><a onClick={() => handleDelete(shelter.idshelter)}>삭제</a></td>
+                            </tr>
+                        ))}
+                    </table>
+                    <Link to='/setting/regiShelter' > 등록하기</Link>
+                </div>
+            </div>
+        </>
     )
 }
 
