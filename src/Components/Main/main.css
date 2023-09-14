@@ -1,3 +1,4 @@
+/* main */
 .componentContainer {
     position: relative;
     background-image: linear-gradient(rgba(33, 38, 39, 0.7), rgba(0, 0, 0, 0.7)), url('../../Assets/fog-2947202_1280.jpg');
@@ -5,6 +6,8 @@
     background-repeat: no-repeat;
     background-position: center center;
     padding: 20px;
+    padding-left: 180px;
+    padding-right: 180px;
 }
 
 .inputBox {
@@ -34,13 +37,8 @@
     color: rgb(255, 255, 255, 0.9);
 }
 
-@media (max-width: 768px) { /* Adjust 768px as needed */
-    .inputBox {
-        grid-template-columns: 1fr; /* Only one column, so children will stack */
-    }
-}
-
-.div1, .div2 {
+.div1,
+.div2 {
     margin: 20px;
 }
 
@@ -49,6 +47,53 @@
     color: rgb(255, 255, 255, 0.7);
 }
 
+.main-container {
+    margin-left: 180px;
+    margin-right: 180px;
+}
+
+/* nav menu icon & txt */
+.icon-container {
+    font-family: 'Atomy-Bold';
+    background-color: #ebeff1;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    margin: 0px 10px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 12px rgb(184, 184, 184, 0.8);
+    border-radius: 10px;
+}
+
+
+.icon-div {
+    display: flex;
+    align-items: center;
+    margin-left: 180px;
+}
+
+
+.nav-icon,
+.nav-title {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.nav-title {
+    margin-left: 10px;
+    font-size: 25px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.nav-txt {
+    align-items: end;
+    margin-right: 180px;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 16px;
+}
+
+/* shelter */
 .selected-shelter {
     color: black;
     font-weight: bolder;
@@ -56,4 +101,181 @@
 
 #map {
     margin-bottom: 20px;
+}
+
+
+/* WLpred */
+.legend-div {
+    display: flex;
+    justify-content: center;
+
+}
+
+.legend {
+    flex-direction: row;
+    justify-content: center;
+    display: flex;
+    margin: 0px 25px;
+    margin-bottom: 20px;
+}
+
+.legend span {
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+.past {
+    background-color: rgba(75, 192, 192, 0.5);
+    border: 2px solid rgba(75, 192, 192, 0.9);
+    width: 50px;
+    height: 22px;
+}
+
+.pred {
+    background-color: rgba(255, 99, 132, 0.5);
+    border: 2px solid rgba(255, 99, 132, 0.9);
+    width: 50px;
+    height: 22px;
+}
+
+#about {
+    background-color: #455a64;
+    color: #ffffff;
+    height: 1000px;
+}
+
+.scroll-container {
+    scroll-behavior: smooth;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+.level {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+
+}
+.level0 {
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Atomy-Bold';
+    border-radius: 12px;
+    box-shadow: 1px 1px 15px rgb(184, 184, 184);
+
+}
+
+.level1 {
+    background-color: rgb(255, 226, 60);
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Atomy-Bold';
+    border-radius: 12px;
+    box-shadow: 1px 1px 15px rgb(184, 184, 184);
+}
+
+.level2 {
+    background-color: rgb(238, 77, 55);
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Atomy-Bold';
+    border-radius: 12px;
+    box-shadow: 1px 1px 15px rgb(184, 184, 184);
+    color: #ffffff;
+
+}
+
+/* @media (max-width: 768px) { 
+    .componentContainer {
+        position: relative;
+        background-image: linear-gradient(rgba(33, 38, 39, 0.7), rgba(0, 0, 0, 0.7)), url('../../Assets/fog-2947202_1280.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        padding: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .inputBox {
+        grid-template-columns: 1fr; 
+    }
+
+    .WLpred-article {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+} */
+
+
+@media (max-width: 1280px) {
+    .componentContainer {
+        position: relative;
+        background-image: linear-gradient(rgba(33, 38, 39, 0.7), rgba(0, 0, 0, 0.7)), url('../../Assets/fog-2947202_1280.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        padding: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .inputBox {
+        grid-template-columns: 1fr;
+    }
+
+    .icon-container {
+        display: flex;
+
+    }
+
+    .icon-div {
+        display: flex;
+        align-items: center;
+        margin-left: 40px;
+    }
+
+    .nav-txt {
+        align-items: end;
+        margin-right: 40px;
+        font-size: 16px;
+    }
+
+    .main-container {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .icon-container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .icon-div {
+        display: flex;
+        align-items: center;
+        margin-left: 40px;
+    }
+
+    .nav-txt {
+        align-items: end;
+        margin-left: 40px;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    .main-container {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
 }
