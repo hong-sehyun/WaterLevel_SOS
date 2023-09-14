@@ -42,7 +42,7 @@ const ShelterList = () => {
         }
     }
     return (
-        <article className='shelterList-article'>
+        <article className='setting-article'>
             <div>
                 <h1>대피소 목록</h1>
                 <table>

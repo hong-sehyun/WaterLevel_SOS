@@ -67,7 +67,7 @@ const RegiShelter = () => {
 
 
     return (
-        <article className='regiShelter-article'>
+        <article className='setting-article'>
             <form onSubmit={handleSubmit}>
                 <div className="grid">
                     <input
