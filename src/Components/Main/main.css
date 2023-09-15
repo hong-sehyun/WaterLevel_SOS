@@ -60,7 +60,7 @@
     display: flex;
     align-items: center;
     margin: 0px 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     box-shadow: 2px 2px 12px rgb(184, 184, 184, 0.8);
     border-radius: 10px;
 }
@@ -152,15 +152,26 @@ html, body {
   scroll-behavior: smooth;
 }
 
+.time-div {
+    font-weight: 600;
+}
+
+/* 홍수특보 호우특보  */
+.level-div {
+    display: flex;
+    margin-bottom: 20px;
+}
+
 .level {
     margin-top: 20px;
     margin-bottom: 20px;
-    font-weight: 600;
-
+    margin-right: 20px;
+    font-size: 17px;
 }
+
 .level0 {
     background-color: rgb(255, 255, 255);
-    padding: 10px;
+    padding: 7px;
     margin-top: 20px;
     margin-bottom: 20px;
     font-family: 'Atomy-Bold';
@@ -171,7 +182,7 @@ html, body {
 
 .level1 {
     background-color: rgb(255, 226, 60);
-    padding: 10px;
+    padding: 7px;
     margin-top: 20px;
     margin-bottom: 20px;
     font-family: 'Atomy-Bold';
@@ -181,7 +192,7 @@ html, body {
 
 .level2 {
     background-color: rgb(238, 77, 55);
-    padding: 10px;
+    padding: 7px;
     margin-top: 20px;
     margin-bottom: 20px;
     font-family: 'Atomy-Bold';

@@ -19,12 +19,66 @@
     
 }
 
-.regiShelter-article {
+.setting-article {
     margin-left: 40px;
     margin-right: 40px;
 }
 
-.shelterList-article {
-    margin-left: 40px;
-    margin-right: 40px;
+.admin-nav {
+    display: flex;  
+    margin-left: 172px; 
+}
+
+.admin-nav h4 {
+    margin: 0;
+    font-family: 'Atomy-Bold';
+}
+
+.admin-nav svg {
+    align-self: center;
+    font-size: 25px;
+    margin-right: 3px;
+    
+}
+
+.nav-main {
+    padding: 10px;
+    margin: 0px 10px;
+    margin-bottom: 20px;
+    background-color: #ebeff1;
+    box-shadow: 2px 2px 12px rgb(184, 184, 184, 0.8);
+}
+
+.setting-main {
+    margin-left: 192px;
+    margin-right: 192px;
+}
+
+.login-article {
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+@media (max-width: 1280px) {
+    .admin-nav {
+        display: flex;  
+        margin-left: 20px; 
+    }
+    .setting-main {
+        margin-left: 42px;
+        margin-right: 42px;
+    }
+    .login-article {
+        margin-left: 120px;
+        margin-right: 120px;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .login-article {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
 }
