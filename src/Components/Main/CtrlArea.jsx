@@ -5,6 +5,9 @@ import axios from 'axios';
 import WebSocketComponent from './WebSocketComponent';
 import CtrlAreaIcon from '../../Assets/Ctrl.svg';
 import './main.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 const CtrlArea = () => {
     const mapRef = useRef(null);
@@ -13,6 +16,9 @@ const CtrlArea = () => {
     const [criteria, setCriteria] = useState(null)
     const [matchCriteria, setMatchCriteria] = useState(null);
 
+    useEffect(() => {
+        AOS.init({duration: 800})
+      }, [])
 
     useEffect(() => {
         const ws = new WebSocket('ws://10.125.121.184:8080/pushservice');
@@ -119,7 +125,7 @@ const CtrlArea = () => {
     }, [criteria]);
 
     return (
-        <>
+        <div data-aos="fade-up">
             <div className='icon-container'>
                 <div className="icon-div">
                     <img src={CtrlAreaIcon} alt="Shelter" className='nav-icon' />
@@ -129,7 +135,7 @@ const CtrlArea = () => {
             </div>
             <div className="main-container">
                 <WebSocketComponent />
-                <div className='level'>
+                {/* <div className='level'>
                     <span className={
                         !matchCriteria ? 'level0' :
                             matchCriteria.idcriteria === 1 ? 'level1' : 'level2'
@@ -137,12 +143,12 @@ const CtrlArea = () => {
                         {!matchCriteria ? '통제 없음' :
                             matchCriteria.idcriteria === 1 ? '홍수 주의보' : '홍수 경보'}
                     </span>
-                </div>
+                </div> */}
 
                 <div id="map" ref={mapRef} style={{ width: '100%', height: '500px' }}></div>
                 <Link to='/'>범람알림 받으러 가기</Link>
             </div>
-        </>
+        </div>
 
     );
 }

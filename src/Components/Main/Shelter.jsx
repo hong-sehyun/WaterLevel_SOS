@@ -4,6 +4,9 @@ import axios from 'axios';
 import WebSocketComponent from './WebSocketComponent';
 import './main.css';
 import ShelterIcon from '../../Assets/shelter.svg'
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 const Shelter = () => {
   const [shelters, setShelters] = useState([]);
@@ -13,7 +16,9 @@ const Shelter = () => {
   const currentInfoWindow = useRef(null);
   const defaultPosition = new window.kakao.maps.LatLng(35.2, 127.6);
   const [mapCenter, setMapCenter] = useState(defaultPosition);
-
+  useEffect(() => {
+    AOS.init({duration: 800})
+  }, [])
 
   const geocoder = new window.kakao.maps.services.Geocoder();
 
@@ -109,7 +114,7 @@ const Shelter = () => {
   }, [shelters, selectedShelter]);
 
   return (
-    <>
+    <div data-aos="fade-up">
       <div className='icon-container'>
         <div className="icon-div">
           <img src={ShelterIcon} alt="Shelter" className='nav-icon' />
@@ -148,7 +153,7 @@ const Shelter = () => {
         </div>
         <Link to='/'>범람알림 받으러 가기</Link>
       </div>
-    </>
+    </div>
   );
 }
 

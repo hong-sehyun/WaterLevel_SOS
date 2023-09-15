@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
 import WebSocketComponent from './WebSocketComponent';
+import RNwarning from './RNwarning';
+import axios from 'axios';
+import AOS from "aos";
+import "aos/dist/aos.css";
 import './main.css';
 import WLpredIcon from '../../Assets/WLpred.svg'
 import { Chart, LineController, LineElement, PointElement, CategoryScale, LinearScale, registerables } from 'chart.js';
@@ -10,6 +14,13 @@ Chart.register(LineController, LineElement, PointElement, CategoryScale, LinearS
 
 const WLpred = () => {
   const [wl, setWl] = useState(null);
+  const [criteria, setCriteria] = useState(null);
+
+  const [matchCriteria, setMatchCriteria] = useState(null);
+
+  useEffect(() => {
+    AOS.init({duration: 800})
+  }, [])
 
   useEffect(() => {
     const ws = new WebSocket('ws://10.125.121.184:8080/pushservice');
@@ -20,6 +31,21 @@ const WLpred = () => {
 
     ws.onmessage = (msg) => {
       const data = JSON.parse(msg.data);
+      // const predictedValue = data.list[data.list.length - 3];
+
+      // axios.get('http://10.125.121.184:8080/criteria')
+      //   .then(resp => {
+      //     const criteriaList = resp.data;
+      //     const matched = criteriaList.find(item => predictedValue >= item.criteria);
+      //     setMatchCriteria(matched); // 상태 업데이트
+      //     if (matched) {
+      //       setCriteria(matched.idcriteria);
+      //     }
+      //     console.log("Matched Criteria:", matched);
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
       console.log(data);
       setWl(data);
     }
@@ -70,7 +96,7 @@ const WLpred = () => {
   };
 
   return (
-    <>
+    <div data-aos="fade-up">
       <div className='icon-container'>
         <div className="icon-div">
           <img src={WLpredIcon} alt="Shelter" className='nav-icon' />
@@ -80,7 +106,16 @@ const WLpred = () => {
       </div>
       <div className='main-container'>
         <WebSocketComponent />
-        <h1>수위예측</h1>
+        {/* <div className='level'>
+          <span className={
+            !matchCriteria ? 'level0' :
+              matchCriteria.idcriteria === 1 ? 'level1' : 'level2'
+          }>
+            {!matchCriteria ? '통제 없음' :
+              matchCriteria.idcriteria === 1 ? '홍수 주의보' : '홍수 경보'}
+          </span>
+        </div> */}
+        {/* <RNwarning /> */}
         <div className='legend-div'>
           <div className="legend">
             <div className='past'></div> <span>과거 수위(EL.m)</span>
@@ -133,7 +168,7 @@ const WLpred = () => {
         )}
         <Link to='/'>범람알림 받으러 가기 </Link>
       </div>
-    </>
+    </div>
   );
 }
 
