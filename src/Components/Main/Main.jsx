@@ -23,7 +23,7 @@ const Main = () => {
 
     const handleSubmit = async () => {
 
-        if (contact.length != 8 || contact.includes('-') || isNaN(Number(contact))) {
+        if (contact.length !=11 || contact.includes('-') || isNaN(Number(contact))) {
             alert("잘못된 휴대폰 번호 입니다.");
             return;
         }
