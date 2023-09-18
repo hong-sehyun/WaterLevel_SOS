@@ -14,7 +14,7 @@ const RegiShelter = () => {
     const open = useDaumPostcodePopup("//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js");
 
 
-    const onComplete = (data) => {
+    const onComplete = async (data) => {
         let fullAddress = data.address;
         let extraAddress = '';
 
@@ -67,22 +67,32 @@ const RegiShelter = () => {
 
 
     return (
-        <div className='setting-main'>
-            <form onSubmit={handleSubmit}>
-                <div className="grid">
-                    <input
-                        type="text"
-                        ref={address}
-                        placeholder="주소 입력"
-                        onClick={handleClick}
-                        readOnly
-                    />
+        <>
+            <div className='nav-main'>
+                <div className='admin-nav'>
+                    <h4>대피소 등록</h4>
                 </div>
-                <input type='text' ref={name} placeholder="대피소명 입력" />
-                <button type='submit'>등록하기</button>
-            </form>
-            <Link to='/setting/shelterList'>목록으로</Link>
-        </div>
+            </div>
+            <div className='setting-main'>
+                <form onSubmit={handleSubmit}>
+                    <div className="grid">
+                        <input
+                            type="text"
+                            ref={address}
+                            placeholder="주소 입력"
+                            onClick={handleClick}
+                            readOnly
+                        />
+                    </div>
+                    <input type='text' ref={name} placeholder="대피소명 입력" />
+                    <button type='submit'>등록하기</button>
+                </form>
+                <div className='listLink'>
+                    <Link to='/setting/shelterList'>목록으로</Link>
+                </div>
+
+            </div>
+        </>
     );
 }
 
