@@ -1,0 +1,38 @@
+.footer-div {
+    background-color: #ebeff1;
+    height: 100px;
+    display: flex;
+    padding-left: 192px;
+    justify-content: space-between;
+}
+
+.footer-div img {
+    width: 160px;
+    align-self: center;
+}
+
+.contact {
+    align-self: center;
+    margin-right: 192px;
+    font-size: 15px;
+    font-weight: 500;
+    opacity: 70%;
+}
+
+.contact a img {
+    width: 36px;
+    align-self: center;
+    opacity: 70%;
+}
+
+
+
+@media (max-width: 1280px) {
+    .footer-div {
+        padding-left: 30PX;
+    }
+    .contact {
+        margin-right: 30px;
+    }
+
+}
