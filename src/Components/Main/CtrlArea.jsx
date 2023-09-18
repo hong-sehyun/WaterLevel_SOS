@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import WebSocketComponent from './WebSocketComponent';
 import CtrlAreaIcon from '../../Assets/Ctrl.svg';
+import MainBT from './MainBT';
 import './main.css';
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -146,7 +147,7 @@ const CtrlArea = () => {
                 </div> */}
 
                 <div id="map" ref={mapRef} style={{ width: '100%', height: '500px' }}></div>
-                <Link to='/'>범람알림 받으러 가기</Link>
+                <MainBT />
             </div>
         </div>
 

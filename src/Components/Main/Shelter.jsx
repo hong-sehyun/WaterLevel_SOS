@@ -4,6 +4,7 @@ import axios from 'axios';
 import WebSocketComponent from './WebSocketComponent';
 import './main.css';
 import ShelterIcon from '../../Assets/shelter.svg'
+import MainBT from './MainBT';
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -26,15 +27,6 @@ const Shelter = () => {
 
   const onShelterClick = (shelter) => {
     setSelectedShelter(shelter);
-    // if (window.kakao && window.kakao.maps) {
-    //   const mapContainer = document.getElementById('map');
-    //   const centerPosition = new window.kakao.maps.LatLng(shelter.latitude, shelter.longtitude);
-    //   const map = new window.kakao.maps.Map(mapContainer, {
-    //     center: centerPosition,
-    //     level: 7
-    //   });
-
-    // }
     geocoder.addressSearch(shelter.address, function (result, status) {
       if (status === window.kakao.maps.services.Status.OK) {
         setMapCenter(new window.kakao.maps.LatLng(result[0].y, result[0].x));
@@ -151,7 +143,7 @@ const Shelter = () => {
           </table>
 
         </div>
-        <Link to='/'>범람알림 받으러 가기</Link>
+        <MainBT />
       </div>
     </div>
   );
