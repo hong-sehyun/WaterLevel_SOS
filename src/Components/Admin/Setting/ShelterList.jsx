@@ -41,6 +41,10 @@ const ShelterList = () => {
             console.error(error);
         }
     }
+
+    const handleRegi = () => {
+        navigate('/setting/regiShelter')
+    }
     return (
         <>
             <div className='nav-main'>
@@ -49,7 +53,7 @@ const ShelterList = () => {
                 </div>
             </div>
             <div className='setting-main'>
-                <div>
+                <div className='table-div'>
                     <table>
                         <tr>
                             <th scope='col'>#</th>
@@ -66,7 +70,10 @@ const ShelterList = () => {
                             </tr>
                         ))}
                     </table>
-                    <Link to='/setting/regiShelter' > 등록하기</Link>
+                    {/* <Link to='/setting/regiShelter' > 등록하기</Link> */}
+                </div>
+                <div className='bt-div'>
+                    <button onClick={handleRegi}>등록하기</button>
                 </div>
             </div>
         </>
