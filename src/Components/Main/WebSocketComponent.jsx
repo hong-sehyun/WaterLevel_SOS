@@ -40,7 +40,7 @@ const WebSocketComponent = () => {
 
       axios.get('http://10.125.121.184:8080/criteria')
         .then(resp => {
-          const criteriaList = resp.data;
+          const criteriaList = resp.data.reverse();
           const matched = criteriaList.find(item => predictedValue >= item.criteria);
           setMatchCriteria(matched); // 상태 업데이트
           if (matched) {
@@ -71,7 +71,7 @@ const WebSocketComponent = () => {
   return (
     <div data-aos="fade-up">
       <div className='time-div'>
-        {time} 기준
+        [실시간] {time} 기준
       </div>
       <div className="level-div">
 
