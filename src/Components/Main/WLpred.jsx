@@ -8,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import './main.css';
 import WLpredIcon from '../../Assets/WLpred.svg'
+import MainBT from './MainBT';
 import { Chart, LineController, LineElement, PointElement, CategoryScale, LinearScale, registerables } from 'chart.js';
 Chart.register(LineController, LineElement, PointElement, CategoryScale, LinearScale, ...registerables);
 
@@ -89,8 +90,8 @@ const WLpred = () => {
     ],
     datasets: [{
       data: wl.list,
-      backgroundColor: wl.list.map((_, idx) => idx < wl.list.length - 3 ? 'rgba(75, 192, 192, 0.5)' : 'rgba(255, 99, 132, 0.5)'),
-      borderColor: wl.list.map((_, idx) => idx < wl.list.length - 3 ? 'rgba(75, 192, 192, 1)' : 'rgba(255, 99, 132, 1)'),
+      backgroundColor: wl.list.map((_, idx) => idx < wl.list.length - 3 ? 'rgba(88, 135, 179, 0.5)' : 'rgba(218, 73, 73, 0.5)'),
+      borderColor: wl.list.map((_, idx) => idx < wl.list.length - 3 ? 'rgba(88, 135, 179, 1)' : 'rgba(218, 73, 73, 01)'),
       borderWidth: 1
     }]
   };
@@ -118,10 +119,10 @@ const WLpred = () => {
         {/* <RNwarning /> */}
         <div className='legend-div'>
           <div className="legend">
-            <div className='past'></div> <span>과거 수위(EL.m)</span>
+            <div className='past'></div> <span>과거 수위(m)</span>
           </div>
           <div className="legend">
-            <div className='pred'></div> <span>예측 수위(EL.m)</span>
+            <div className='pred'></div> <span>예측 수위(m)</span>
           </div>
         </div>
         {/* <div>
@@ -152,7 +153,7 @@ const WLpred = () => {
                     beginAtZero: true,
                     title: {
                       display: true,
-                      text: '수위 (EL.m)'
+                      text: '수위 (m)'
                     }
                   },
                   x: {
@@ -166,7 +167,7 @@ const WLpred = () => {
             />
           </>
         )}
-        <Link to='/'>범람알림 받으러 가기 </Link>
+        <MainBT />
       </div>
     </div>
   );
