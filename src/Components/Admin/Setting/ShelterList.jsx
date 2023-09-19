@@ -27,6 +27,11 @@ const ShelterList = () => {
 
     const handleDelete = async (id) => {
         const token = cookies.jwtToken;
+        const userConfirmed = window.confirm('정말로 삭제하시겠습니까?');
+
+        if (!userConfirmed) {
+            return;
+          }
 
         try {
             await axios.delete(`http://10.125.121.184:8080/shelter/${id}`, {
@@ -35,7 +40,6 @@ const ShelterList = () => {
                 }
             });
             setShelters(prevShelters => prevShelters.filter(shelter => shelter.idshelter !== id));
-            alert('정말로 삭제하시겠습니까?')
             navigate('/setting/shelterList');
         } catch (error) {
             console.error(error);
@@ -72,8 +76,13 @@ const ShelterList = () => {
                     </table>
                     {/* <Link to='/setting/regiShelter' > 등록하기</Link> */}
                 </div>
-                <div className='bt-div'>
-                    <button onClick={handleRegi}>등록하기</button>
+                <div className="shleterList-footer">
+                    <div className='listLink'>
+                        <Link to='/setting'>목록으로</Link>
+                    </div>
+                    <div className='bt-div'>
+                        <button onClick={handleRegi}>등록하기</button>
+                    </div>
                 </div>
             </div>
         </>
