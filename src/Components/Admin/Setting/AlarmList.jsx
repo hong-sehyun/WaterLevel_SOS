@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie';
+import { Link } from 'react-router-dom'
 import '../admin.css';
 import axios from 'axios';
 
@@ -42,7 +43,7 @@ const AlarmList = () => {
             return `${month}월 ${day}일 ${hour}시`;
 
         }
-        const text = `${dtTime(wlDt)} 가탄교에 ${level(idcriteria)} 발령 예정`
+        const text = `${dtTime(wlDt)} 가탄교에 ${level(idcriteria)} 발령 예정, 아래 url을 클릭해 대피소 위치를 확인하세요. 홍수통제소 담당자 연락처: 000-000-0000`
         return text
     }
 
@@ -102,6 +103,7 @@ const AlarmList = () => {
                 </table>
             </div> */}
             <div className='setting-main'>
+                <div className='admin-comment'>※ 각 항목을 클릭하면 알림 수신인 목록을 보실 수 있습니다.</div>
                 <table>
                     <thead>
                         <tr>
@@ -123,6 +125,10 @@ const AlarmList = () => {
                         })}
                     </tbody>
                 </table>
+                <div className='listLink'>
+                    <Link to='/setting'>목록으로</Link>
+                </div>
+
             </div>
             {selectedAlarm && (
                 <dialog open>
@@ -150,6 +156,7 @@ const AlarmList = () => {
                     </article>
                 </dialog>
             )}
+
         </>
     )
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { Link } from 'react-router-dom'
 
 const MemberList = () => {
   const [contactList, setContactList] = useState([]);
@@ -47,32 +48,35 @@ const MemberList = () => {
 
   return (
     <>
-    <div className='nav-main'>
+      <div className='nav-main'>
         <div className='admin-nav'>
           <h4>알림 등록 이용자 목록</h4>
         </div>
       </div>
-    <div className="setting-main">
-      <table>
-        <tr>
-          <th>#</th>
-          <th>이름</th>
-          <th>전화번호</th>
-          <th></th>
-        </tr>
-
-        {contactList.map((contact, index) => (
-          <tr key={index}>
-            <td>{contact.idmember}</td>
-            <td>{contact.name}</td>
-            <td>{contact.contact}</td>
-            <td><a onClick={() => handleDelete(contact.idmember)}>삭제</a></td>
-
+      <div className="setting-main">
+        <table>
+          <tr>
+            <th>#</th>
+            <th>이름</th>
+            <th>전화번호</th>
+            <th></th>
           </tr>
-        ))}
-      </table>
 
-    </div>
+          {contactList.map((contact, index) => (
+            <tr key={index}>
+              <td>{contact.idmember}</td>
+              <td>{contact.name}</td>
+              <td>{contact.contact}</td>
+              <td><a onClick={() => handleDelete(contact.idmember)}>삭제</a></td>
+
+            </tr>
+          ))}
+        </table>
+        <div className='listLink'>
+          <Link to='/setting'>목록으로</Link>
+        </div>
+
+      </div>
     </>
   )
 }
