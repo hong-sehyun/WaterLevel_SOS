@@ -9,11 +9,12 @@ const RegiLoc = () => {
     const initialCoordinates = { lat: 35.193298746054666, lng: 127.62529657735537 };
     const [clickedCoordinates, setClickedCoordinates] = useState([]);
     const [markers, setMarkers] = useState([]);
+    const KAKAOMAP_API_KEY = process.env.REACT_APP_KAKAOMAP_API_KEY;
 
     useEffect(() => {
         const script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=627febc1693dbff48776490bf4ef5a93&autoload=false';
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAOMAP_API_KEY}&autoload=false`;
         document.head.appendChild(script);
 
         script.onload = () => {
