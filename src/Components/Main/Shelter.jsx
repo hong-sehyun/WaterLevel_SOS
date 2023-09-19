@@ -18,7 +18,7 @@ const Shelter = () => {
   const defaultPosition = new window.kakao.maps.LatLng(35.2, 127.6);
   const [mapCenter, setMapCenter] = useState(defaultPosition);
   useEffect(() => {
-    AOS.init({duration: 800})
+    AOS.init({ duration: 800 })
   }, [])
 
   const geocoder = new window.kakao.maps.services.Geocoder();
