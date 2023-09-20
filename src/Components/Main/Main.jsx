@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './main.css'
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -8,6 +9,7 @@ import "aos/dist/aos.css";
 const Main = () => {
     const [name, setName] = useState('');
     const [contact, setContact] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         AOS.init({duration: 1500})
@@ -35,6 +37,7 @@ const Main = () => {
 
             await axios.post('http://10.125.121.184:8080/contact', data);
             alert("등록 되었습니다!");
+            navigate('/')
         } catch (error) {
             console.error(error);
             alert("등록에 실패하였습니다.");
