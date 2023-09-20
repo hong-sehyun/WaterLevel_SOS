@@ -28,11 +28,11 @@ const CtrlArea = () => {
             console.log('연결됨');
         }
 
-        ws.onmessage = (msg) => {
+        ws.onmessage = async (msg) => {
             const data = JSON.parse(msg.data);
             const predictedValue = data.list[data.list.length - 3];
 
-            axios.get('http://10.125.121.184:8080/criteria')
+            await axios.get('http://10.125.121.184:8080/criteria')
                 .then(resp => {
                     const criteriaList = resp.data;
                     const matched = criteriaList.find(item => predictedValue >= item.criteria);
