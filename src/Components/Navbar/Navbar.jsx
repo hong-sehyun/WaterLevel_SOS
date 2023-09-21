@@ -32,10 +32,10 @@ function Navbar() {
         <ul className='category'>
           <li id="more-icon" onClick={() => setShowModal(true)}><FiMenu /></li>
           <div className='c'>
-          <li><Link to="/ctrlarea" data-replace="통제(예정) 현황"><span>통제(예정) 현황</span></Link></li>
-        <li><Link to="/wlpred" data-replace="수위 예측"><span>수위 예측</span></Link></li>
-        <li><Link to="/shelter" data-replace="대피소"><span>대피소</span></Link></li>
-
+            {/* <li><a href='#section2' data-replace="소개"><span>소개</span></a></li> */}
+            <li><Link to="/ctrlarea" data-replace="통제(예정) 현황"><span>통제(예정) 현황</span></Link></li>
+            <li><Link to="/wlpred" data-replace="수위 예측"><span>수위 예측</span></Link></li>
+            <li><Link to="/shelter" data-replace="대피소"><span>대피소</span></Link></li>
           </div>
           <li>
             <details role="list" dir="rtl">
