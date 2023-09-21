@@ -52,11 +52,35 @@
 .setting-main {
     margin-left: 192px;
     margin-right: 192px;
+
 }
+
+
+.bt-div {
+    display: flex;
+    justify-content: flex-end;
+    width: 150px;
+}
+
+
 
 .login-article {
     margin-left: 200px;
     margin-right: 200px;
+}
+
+.admin-comment {
+    padding-bottom: 30px;
+    font-weight: 700;
+}
+
+.listLink {
+    font-weight: 600;
+}
+
+.shleterList-footer {
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (max-width: 1280px) {
