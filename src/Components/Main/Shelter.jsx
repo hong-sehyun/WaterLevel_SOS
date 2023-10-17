@@ -38,7 +38,7 @@ const Shelter = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://10.125.121.184:8080/shelter');
+        const response = await axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/shelter`);
         if (response.data) {
           setShelters(response.data);
         }

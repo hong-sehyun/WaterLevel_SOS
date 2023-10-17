@@ -35,7 +35,7 @@ const Main = () => {
                 contact: contact
             };
 
-            await axios.post('http://10.125.121.184:8080/contact', data);
+            await axios.post(`http://${process.env.REACT_APP_API_BASE_URL}/contact`, data);
             alert("등록 되었습니다!");
             navigate('/')
         } catch (error) {

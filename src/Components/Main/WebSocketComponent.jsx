@@ -27,7 +27,7 @@ const WebSocketComponent = () => {
   }
 
   useEffect(() => {
-    const ws = new WebSocket('ws://10.125.121.184:8080/pushservice');
+    const ws = new WebSocket(`ws://${process.env.REACT_APP_API_BASE_URL}/pushservice`);
 
     ws.onopen = () => {
       console.log('연결됨');
@@ -38,7 +38,7 @@ const WebSocketComponent = () => {
       const reqTime = formatTime(data.reqTime);
       const predictedValue = data.list[data.list.length - 3];
 
-      axios.get('http://10.125.121.184:8080/criteria')
+      axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/criteria`)
         .then(resp => {
           const criteriaList = resp.data.reverse();
           const matched = criteriaList.find(item => predictedValue >= item.criteria);

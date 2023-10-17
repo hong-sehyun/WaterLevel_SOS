@@ -24,7 +24,7 @@ const WLpred = () => {
   }, [])
 
   useEffect(() => {
-    const ws = new WebSocket('ws://10.125.121.184:8080/pushservice');
+    const ws = new WebSocket(`ws://${process.env.REACT_APP_API_BASE_URL}/pushservice`);
 
     ws.onopen = () => {
       console.log('연결됨');

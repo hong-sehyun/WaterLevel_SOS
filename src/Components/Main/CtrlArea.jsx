@@ -22,7 +22,7 @@ const CtrlArea = () => {
       }, [])
 
     useEffect(() => {
-        const ws = new WebSocket('ws://10.125.121.184:8080/pushservice');
+        const ws = new WebSocket(`ws://${process.env.REACT_APP_API_BASE_URL}/pushservice`);
 
         ws.onopen = () => {
             console.log('연결됨');
@@ -32,7 +32,7 @@ const CtrlArea = () => {
             const data = JSON.parse(msg.data);
             const predictedValue = data.list[data.list.length - 3];
 
-            await axios.get('http://10.125.121.184:8080/criteria')
+            await axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/criteria`)
                 .then(resp => {
                     const criteriaList = resp.data;
                     const matched = criteriaList.find(item => predictedValue >= item.criteria);
@@ -85,7 +85,7 @@ const CtrlArea = () => {
         const map = new kakao.maps.Map(container, options);
 
         if (criteria !== null) {
-            axios.get('http://10.125.121.184:8080/ctrlarea')
+            axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/ctrlarea`)
                 .then(response => {
                     const areas = response.data.filter(item => item.idcriteria === criteria);
 
@@ -106,7 +106,7 @@ const CtrlArea = () => {
                     console.error(error);
                 });
 
-            axios.get('http://10.125.121.184:8080/ctrlpoint')
+            axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/ctrlpoint`)
                 .then(response => {
                     const points = response.data.filter(item => item.idcriteria === criteria);
 
