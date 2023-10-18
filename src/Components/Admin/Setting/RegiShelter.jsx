@@ -49,7 +49,7 @@ const RegiShelter = () => {
 
 
         try {
-            await axios.post('http://10.125.121.184:8080/shelter', {
+            await axios.post(`http://${process.env.REACT_APP_API_BASE_URL}/shelter`, {
                 address: address.current.value,
                 name: name.current.value
             }, {

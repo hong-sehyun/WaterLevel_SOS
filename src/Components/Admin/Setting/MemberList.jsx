@@ -10,7 +10,7 @@ const MemberList = () => {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const resp = await axios.get('http://10.125.121.184:8080/contact/list', {
+        const resp = await axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/contact/list`, {
           headers: {
             'Authorization': cookies.jwtToken
           }
@@ -33,7 +33,7 @@ const MemberList = () => {
       return;
     }
     try {
-      const resp = await axios.delete(`http://10.125.121.184:8080/contact/${idmember}`, {
+      const resp = await axios.delete(`http://${process.env.REACT_APP_API_BASE_URL}/contact/${idmember}`, {
         headers: {
           'Authorization': cookies.jwtToken
         }

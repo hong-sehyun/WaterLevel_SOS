@@ -15,7 +15,7 @@ const AlarmList = () => {
         const fetchData = async () => {
             const token = cookies.jwtToken;
             try {
-                const resp = await axios.get('http://10.125.121.184:8080/alarm', {
+                const resp = await axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/alarm`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

@@ -13,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const resp = await axios.post('http://10.125.121.184:8080/login', {
+      const resp = await axios.post(`http://${process.env.REACT_APP_API_BASE_URL}/login`, {
         id,
         password
       });

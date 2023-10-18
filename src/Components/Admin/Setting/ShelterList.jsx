@@ -13,7 +13,7 @@ const ShelterList = () => {
     useEffect(() => {
         const fetchShelters = async () => {
             try {
-                const resp = await axios.get('http://10.125.121.184:8080/shelter');
+                const resp = await axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/shelter`);
                 setShelters(resp.data);
             } catch (error) {
                 console.log(error);
@@ -34,7 +34,7 @@ const ShelterList = () => {
           }
 
         try {
-            await axios.delete(`http://10.125.121.184:8080/shelter/${id}`, {
+            await axios.delete(`http://${process.env.REACT_APP_API_BASE_URL}/shelter/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
